@@ -1,6 +1,8 @@
 <div align="center">
 
 # ⬆️ dsh-plugin-upgrade
+
+> **范围：corridor 到 `0.1.6-alpha.2` 为止。** 没有 `0.1.6 → 0.2.x` 的卡片；本包仍可装在 0.2.x 宿主上扫描旧插件仓，但它不是 0.2.x 迁移路径。日常 bundle 更新请用宿主插件管理器的原生 `updateBundle()`。
 - **1024 商店通道**：先 `npm i -g dsh1024`，再执行 `dsh1024 plugin --profile web add dsh-plugin-upgrade`（计入 [deepseek1024.com](https://deepseek1024.com) 安装排行）。
 [![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/dsh-plugin-upgrade)
 [![dshfind](https://dshfind.com/api/badge/PerryLink/dsh-plugin-upgrade?metric=downloads&lang=zh)](https://dshfind.com/zh/plugins/PerryLink/dsh-plugin-upgrade?ref=badge)

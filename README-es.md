@@ -1,6 +1,9 @@
 <div align="center">
 
 # ⬆️ dsh-plugin-upgrade
+
+> **Alcance: los corredores terminan en `0.1.6-alpha.2`.** No hay un corredor `0.1.6 → 0.2.x`; el paquete aún puede instalarse en hosts 0.2.x para escanear repositorios antiguos, pero no es una ruta de migración a 0.2.x. Para actualizaciones rutinarias del bundle, use el `updateBundle()` nativo del gestor de plugins del host.
+
 - **Canal de la tienda 1024**: ejecuta `npm i -g dsh1024` una vez y luego `dsh1024 plugin --profile web add dsh-plugin-upgrade` (cuenta para el ranking de instalaciones de [deepseek1024.com](https://deepseek1024.com)).
 [![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/dsh-plugin-upgrade)
 [![dshfind](https://dshfind.com/api/badge/PerryLink/dsh-plugin-upgrade?metric=downloads&lang=es)](https://dshfind.com/es/plugins/PerryLink/dsh-plugin-upgrade?ref=badge)

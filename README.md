@@ -1,6 +1,9 @@
 <div align="center">
 
 # ⬆️ dsh-plugin-upgrade
+
+> **Scope: corridors end at `0.1.6-alpha.2`.** There is no `0.1.6 → 0.2.x` corridor; the package can still be installed on 0.2.x hosts to scan old plugin repos, but it is not a 0.2.x migration path. For routine bundle updates, use the host plugin manager's native `updateBundle()`.
+
 - **1024 store channel**: `npm i -g dsh1024` once, then `dsh1024 plugin --profile web add dsh-plugin-upgrade` (counts toward the [deepseek1024.com](https://deepseek1024.com) install ranking).
 [![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/dsh-plugin-upgrade)
 [![dshfind](https://dshfind.com/api/badge/PerryLink/dsh-plugin-upgrade?metric=downloads)](https://dshfind.com/plugins/PerryLink/dsh-plugin-upgrade?ref=badge)
