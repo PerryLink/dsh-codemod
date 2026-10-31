@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.1.2] - 2026-10-31
+
+### Changed
+
+- Docs: state that the corridors end at 0.1.6-alpha.2 and there is no 0.2.x corridor; no code change.
+
 ## [2.1.1] - 2026-10-18
 
 ### Changed
