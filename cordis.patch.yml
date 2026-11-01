@@ -1,16 +1,16 @@
 # SPDX-License-Identifier: Apache-2.0
-# dsh-plugin-upgrade bundle patch layer.
+# dsh-codemod bundle patch layer.
 #
 # A loader patch file is a top-level YAML array; each entry inserts (or removes)
 # composition rows. This bundle mounts one row and registers one bundled agent
 # skill (`plugin-upgrade`) through the `skills` service. It contributes no
 # system-prompt paragraph and no tool: the model sees the skill only when a task
-# needs it, and the CLI (`dsh-plugin-upgrade-scan`) stays an explicit
+# needs it, and the CLI (`dsh-codemod-scan`) stays an explicit
 # developer action. Every key below is a Config field (Schemastery schema);
 # invalid values fail the profile load loudly. See README.md "Configuration".
 - insert:
-    - id: dsh-plugin-upgrade
-      name: dsh-plugin-upgrade
+    - id: dsh-codemod
+      name: dsh-codemod
       config:
         # Register the packaged skill. Default true.
         enabled: true

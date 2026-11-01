@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.1] - 2026-11-02
+
+### Fixed
+
+- Rename the bundle row and exported plugin name to `dsh-codemod`.
+- Update the tests and the cordis patch to match the new package name.
+
+
 ## [3.0.0] - 2026-11-02
 
 ### Changed

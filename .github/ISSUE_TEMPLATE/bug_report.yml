@@ -1,5 +1,5 @@
 name: Bug report
-description: Report a bug in dsh-plugin-upgrade
+description: Report a bug in dsh-codemod
 title: 'bug: '
 labels: [bug]
 body:
@@ -7,7 +7,7 @@ body:
     id: package-version
     attributes:
       label: Package version
-      description: The installed dsh-plugin-upgrade version (`npm ls dsh-plugin-upgrade`, or the git commit when installed from source).
+      description: The installed dsh-codemod version (`npm ls dsh-codemod`, or the git commit when installed from source).
     validations:
       required: true
   - type: input

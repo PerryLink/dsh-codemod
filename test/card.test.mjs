@@ -129,11 +129,11 @@ test('the skill directory, the frontmatter name and the bundle default agree', (
   assert.match(skill, /supported entry line is 0\.1\.6-alpha\.2/)
   assert.match(skill, /not a pre-0\.1\.6 activation promise/)
   const patch = readFileSync(path.join(root, 'cordis.patch.yml'), 'utf8')
-  assert.match(patch, /^\s+- id: dsh-plugin-upgrade$/m)
+  assert.match(patch, /^\s+- id: dsh-codemod$/m)
   assert.match(patch, /skillName: plugin-upgrade/)
   const entry = readFileSync(path.join(root, 'index.mjs'), 'utf8')
   assert.match(entry, /default\('plugin-upgrade'\)/, 'the Config default must name the packaged skill')
-  assert.match(entry, /export const name = 'dsh-plugin-upgrade'/)
+  assert.match(entry, /export const name = 'dsh-codemod'/)
 })
 
 // ---- corridor 2: `legC`. Same evidence-binding rule, its own catalog. ----
