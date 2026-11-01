@@ -14,7 +14,7 @@ cards (`skills/plugin-upgrade/references/v0.1.3-alpha.1-to-v0.1.5-rc.1.md` and
 - **A new corridor adds a card and an index row, not a package.** Owner decision
   (2026-09-19), recorded in `lib/route.mjs`: this package carries the corridor **index**.
   `resolveCorridor()` reads the target repository's declared band (`engines.dsh`, the
-  `@deepseek-ai/dsh*` ranges) and routes to the matching corridor; `--span legAB|legC`
+  `@deepseek-ai/dsh*` ranges) and routes to the matching corridor; `--span legAB|legC|legD`
   overrides the guess, and an undeclared band falls back to the older corridor.
   - **`legAB`** — `0.1.3-alpha.1 → 0.1.5-rc.1`, carried as leg A (`0.1.3-alpha.1 →
     0.1.5-alpha.1`) and leg B (`0.1.5-alpha.1 → 0.1.5-rc.1`): 20 seams, catalog
@@ -106,6 +106,7 @@ skills/plugin-upgrade/SKILL.md  the bundled skill body (frontmatter name is the 
 skills/plugin-upgrade/references/v0.1.3-alpha.1-to-v0.1.5-rc.1.md  the `legAB` card:
                                     §1 Leg A, §2 Leg B, §3 the 20-seam index
 skills/plugin-upgrade/references/v0.1.5-rc.2-to-v0.1.6-alpha.2.md  the `legC` card:
+skills/plugin-upgrade/references/v0.1.6-alpha.2-to-v0.2.x.md  the `legD` card:
                                     the 5-seam `E1`–`E5` index and the fix/verify recipes
 test/scan.test.mjs    synthetic bad/good fixtures for BOTH legs + --seams + a live negative
 test/plugin.test.mjs  real Cordis Context + real SkillRegistry: register, dispose, negatives
@@ -153,7 +154,7 @@ LICENSE               Apache-2.0
   criterion is a real-host smoke on a temp `DSH_HOME`.
 - **The card and the catalog are one catalog — per corridor.** `test/card.test.mjs` fails when
   a card's index and that corridor's catalog disagree on ids or severities, when a card mints
-  an id outside its own catalog, and when `legC`'s `CARD_ONLY` is not empty. The two corridors'
+  an id outside its own catalog, and when `legC`'s or `legD`'s `CARD_ONLY` is not empty. The three corridors'
   catalogs are never merged. Change the card first, then the catalog, in the same commit.
 - **Mount loud.** A missing `SKILL.md`, an empty body, or a frontmatter without `name` must
   abort the mount. Never register a placeholder skill.

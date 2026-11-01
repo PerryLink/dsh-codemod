@@ -4,7 +4,7 @@
  * CLI wrapper for the corridor-index router (one package, several closed corridors).
  *
  * Usage:
- *   node scripts/scan-0.1.5.mjs [--repo <path>] [--span legC|legAB|<span>] [--json <out.json>] [--seams E1,E3] [--quiet]
+ *   node scripts/scan-0.1.5.mjs [--repo <path>] [--span legD|legC|legAB|<span>] [--json <out.json>] [--seams E1,E3] [--quiet]
  *   npx --package dsh-plugin-upgrade dsh-plugin-upgrade-scan --repo <path>
  *
  * The wrapper only routes: it reads the target repository's declared dsh band (or

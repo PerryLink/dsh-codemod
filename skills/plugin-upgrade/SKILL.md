@@ -13,7 +13,7 @@ user-invocable: true
 
 # Plugin upgrade · one package, one corridor index (three closed corridors)
 
-You are migrating **one plugin repository** across the merged DSH span `0.1.3-alpha.1 → 0.1.5-rc.1`. The goal is not "make typecheck pass" — it is "prove the plugin still works on the target host". Local gates are necessary but not sufficient, and two classes of failure survive a green gate: **stale-type false green** (the local gate compiles an old type line) and **silent non-mount** (the host drops a contribution with no error, no log line and no failed build). Read the leg that matches your peer band; both legs share one scanner and one catalog.
+You are migrating **one plugin repository** across one closed DSH corridor. The goal is not "make typecheck pass" — it is "prove the plugin still works on the target host". Local gates are necessary but not sufficient, and two classes of failure survive a green gate: **stale-type false green** (the local gate compiles an old type line) and **silent non-mount** (the host drops a contribution with no error, no log line and no failed build). The corridor index in `lib/route.mjs` picks the card from your declared peer band; each corridor keeps its **own** scanner catalog, so read only the leg you were routed to.
 
 ## 1. Locate your leg first
 

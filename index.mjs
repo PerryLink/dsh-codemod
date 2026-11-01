@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: Apache-2.0
 // dsh-plugin-upgrade bundle entry point.
 //
-// Publishes the merged `0.1.3-alpha.1 -> 0.1.5-rc.1` corridor as an on-demand
-// agent skill named `plugin-upgrade`. The corridor is one span carried by
-// two closed legs (leg A `0.1.3-alpha.1 -> 0.1.5-alpha.1`, leg B
-// `0.1.5-alpha.1 -> 0.1.5-rc.1`); the skill body is this package's
+// Publishes the corridor index as an on-demand agent skill named
+// `plugin-upgrade`: `legAB` (`0.1.3-alpha.1 -> 0.1.5-rc.1`, carried as two
+// closed legs), `legC` (`0.1.5-rc.2 -> 0.1.6-alpha.2`) and `legD`
+// (`0.1.6-alpha.2 / 0.1.7 -> 0.2.x`). The skill body is this package's
 // `skills/plugin-upgrade/SKILL.md`, and its relative references
 // (`./references/...`) and scripts (`./scripts/...`) resolve against the
 // packaged skills directory through the directory resourceBase, so the agent
-// loads the merged version card and the scanner only when a task needs them.
+// loads the matching corridor card and the scanner only when a task needs them.
 //
 // The package imports nothing from the harness beyond the injected `skills`
 // service, so the cordis peer stays metadata-only.

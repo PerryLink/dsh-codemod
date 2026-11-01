@@ -29,7 +29,8 @@ const cardD = readFileSync(cardDPath, 'utf8')
 /**
  * A card's index section, delimited by HTML comment markers. The `legAB` card
  * marks its section `MERGED-SEAM-INDEX`; the `legC` card marks its own
- * `SEAM-INDEX`. One package, two corridors, two independent indexes.
+ * `SEAM-INDEX`; the `legD` card marks its own `LEGD-SEAM-INDEX`. One package,
+ * three corridors, three independent indexes.
  */
 function indexSection(text, begin, end) {
   const start = text.indexOf(begin)

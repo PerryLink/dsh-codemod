@@ -142,3 +142,9 @@ test('the legD scan is read-only: the fixture trees are untouched', () => {
     assert.deepEqual(fs.readdirSync(dir).sort(), before)
   }
 })
+
+test('the wrapper consumes --span for every corridor (legAB/legC/legD)', () => {
+  assert.equal(runCli(['--repo', path.join(root, 'fixtures', 'leg-a-bad-repo'), '--span', 'legAB', '--quiet']).status, 1)
+  assert.equal(runCli(['--repo', path.join(root, 'fixtures', 'leg-c-bad-repo'), '--span', 'legC', '--quiet']).status, 1)
+  assert.equal(runCli(['--repo', bad, '--span=legD', '--quiet']).status, 1)
+})

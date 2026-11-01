@@ -11,7 +11,7 @@
 ### Changed
 
 - **Routing:** `lib/route.mjs` gains the `legD` index row and the `0.1.7` / positive-`0.2` band heuristic. Upper bounds are stripped before the 0.2 test, so a stale `<0.2.0` band does not route to legD by itself. `CORRIDOR_CEILING` rises to `0.2.2-alpha.2`, and the "newer than every corridor" warning now reads the constant instead of a hardcoded string.
-- **Dispatch fix:** the CLI wrapper consumes `--span` before handing argv to a catalog `main()`. Previously `--span legC` reached the catalog as an unknown argument and exited `2`; the flag never actually worked end-to-end.
+- **Dispatch fix:** the CLI wrapper consumes `--span` before handing argv to a catalog `main()`, and the three catalogs only self-execute when their own file is the process entry point (the old `endsWith` guard re-ran `lib/scan.mjs`'s `main()` whenever the wrapper imported it). Previously `--span legC`/`--span legAB` reached a catalog as an unknown argument and exited `2`; the flag never actually worked end-to-end.
 - Skill frontmatter/body, `README.md` and the four translations, `AGENTS.md`, `types.d.ts`, `package.json` metadata, and the artifact/self-contained gates now describe and require all three corridors. No `legAB`/`legC` seam, card, catalog or fixture changed.
 - Evidence: `docs/EVIDENCE.md` §12 records the commands and `path:line` outputs behind every `legD` seam (harness checkout `ce7073d512` = `0.2.2-alpha.2`; guide baseline `d743267` = `dsh-v0.2.1-alpha.2`).
 
