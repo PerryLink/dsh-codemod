@@ -1,12 +1,15 @@
 <div align="center">
 
-# ⬆️ dsh-plugin-upgrade
+# ⬆️ dsh-codemod
+
+> **Renamed:** previously `dsh-plugin-upgrade`; now **`dsh-codemod`**. Old repo stays as a pointer/backup. New home: https://github.com/PerryLink/dsh-codemod
+
 
 > **दायरा: तीन बंद कॉरिडोर, `0.2.x` तक।** `legAB` = `0.1.3-alpha.1` → `0.1.5-rc.1`, `legC` = `0.1.5-rc.2` → `0.1.6-alpha.2`, `legD` = `0.1.6-alpha.2 / 0.1.7` → `0.2.x` (`0.2.2-alpha.2` checkout और गाइड के `0.2.1-alpha.2` बेसलाइन पर मापा गया)। `legD` केवल पाँच सीमें (`D1`–`D5`) स्कैन करता है; बाकी 0.2 बदलाव **advisory (not scanned)** में हैं — साफ़ स्कैन 0.2 अनुरूपता का प्रमाण नहीं है। सामान्य bundle अपडेट के लिए host plugin manager का native `updateBundle()` उपयोग करें।
 
-- **1024 स्टोर चैनल**: एक बार `npm i -g dsh1024` चलाएँ, फिर `dsh1024 plugin --profile web add dsh-plugin-upgrade` (यह [deepseek1024.com](https://deepseek1024.com) की इंस्टॉल रैंकिंग में गिना जाता है)।
-[![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/dsh-plugin-upgrade)
-[![dshfind](https://dshfind.com/api/badge/PerryLink/dsh-plugin-upgrade?metric=downloads&lang=hi)](https://dshfind.com/hi/plugins/PerryLink/dsh-plugin-upgrade?ref=badge)
+- **1024 स्टोर चैनल**: एक बार `npm i -g dsh1024` चलाएँ, फिर `dsh1024 plugin --profile web add dsh-codemod` (यह [deepseek1024.com](https://deepseek1024.com) की इंस्टॉल रैंकिंग में गिना जाता है)।
+[![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/dsh-codemod)
+[![dshfind](https://dshfind.com/api/badge/PerryLink/dsh-codemod?metric=downloads&lang=hi)](https://dshfind.com/hi/plugins/PerryLink/dsh-codemod?ref=badge)
 
 **DeepSeek Harness के लिए प्लगइन अपग्रेड स्किल — एक पैकेज, एक कॉरिडोर सूचकांक, तीन बंद कॉरिडोर: `0.1.3-alpha.1` → `0.1.5-rc.1` (`legAB`), `0.1.5-rc.2` → `0.1.6-alpha.2` (`legC`) और `0.1.6-alpha.2 / 0.1.7` → `0.2.x` (`legD`)।**
 
@@ -19,15 +22,15 @@
 [![dsh-doctor](https://raw.githubusercontent.com/PerryLink/dsh-plugin-doctor/main/badges/PerryLink__dsh-plugin-upgrade.svg)](https://github.com/PerryLink/dsh-plugin-doctor#verified-徽章)
 [![DSH Market](https://raw.githubusercontent.com/2BingLing/dsh-market/master/assets/readme/badge-listed-en.svg)](https://dsh.market/)
 [![Node](https://img.shields.io/badge/node-%5E22.19%20%7C%7C%20%3E%3D24-brightgreen.svg)](#)
-[![CI](https://img.shields.io/github/actions/workflow/status/PerryLink/dsh-plugin-upgrade/ci.yml?branch=main&label=CI)](https://github.com/PerryLink/dsh-plugin-upgrade/actions)
-[![Version](https://img.shields.io/github/v/tag/PerryLink/dsh-plugin-upgrade?label=version)](https://github.com/PerryLink/dsh-plugin-upgrade/releases)
-[![npm version](https://img.shields.io/npm/v/dsh-plugin-upgrade)](https://www.npmjs.com/package/dsh-plugin-upgrade)
-[![npm downloads](https://img.shields.io/npm/dm/dsh-plugin-upgrade)](https://www.npmjs.com/package/dsh-plugin-upgrade)
+[![CI](https://img.shields.io/github/actions/workflow/status/PerryLink/dsh-codemod/ci.yml?branch=main&label=CI)](https://github.com/PerryLink/dsh-codemod/actions)
+[![Version](https://img.shields.io/github/v/tag/PerryLink/dsh-codemod?label=version)](https://github.com/PerryLink/dsh-codemod/releases)
+[![npm version](https://img.shields.io/npm/v/dsh-codemod)](https://www.npmjs.com/package/dsh-plugin-upgrade)
+[![npm downloads](https://img.shields.io/npm/dm/dsh-codemod)](https://www.npmjs.com/package/dsh-plugin-upgrade)
 
 [English](README.md) · [简体中文](README-zh.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
 
 ```sh
-dsh plugin --profile <name> add dsh-plugin-upgrade
+dsh plugin --profile <name> add dsh-codemod
 ```
 
 
@@ -42,7 +45,7 @@ dsh plugin --profile <name> add dsh-plugin-upgrade
 ## इंस्टॉल और अनइंस्टॉल
 
 ```sh
-dsh plugin --profile web add dsh-plugin-upgrade            # npm से
+dsh plugin --profile web add dsh-codemod            # npm से
 dsh plugin --profile web add github:PerryLink/dsh-plugin-upgrade   # स्रोत से
 dsh plugin --profile web remove dsh-plugin-upgrade         # अनइंस्टॉल (प्रतिवर्ती)
 ```
@@ -111,7 +114,7 @@ dsh plugin --profile web add github:PerryLink/dsh-plugin-upgrade
 
 ```sh
 # 1. बंडल को अपने प्रोफ़ाइल में इंस्टॉल करें
-dsh plugin --profile web add dsh-plugin-upgrade
+dsh plugin --profile web add dsh-codemod
 
 # 2. पुष्टि करें कि पंक्ति माउंट हुई
 dsh --profile web --dump-config | grep -A3 'id: dsh-plugin-upgrade'
@@ -356,7 +359,7 @@ npm pack
 | **[dsh-plugin-doctor](https://github.com/PerryLink/dsh-plugin-doctor)** |  |
 | **[dsh-plugin-guide](https://github.com/PerryLink/dsh-plugin-guide)** |  |
 | **[dsh-plugin-kit](https://github.com/PerryLink/dsh-plugin-kit)** |  |
-| **[dsh-plugin-upgrade](https://github.com/PerryLink/dsh-plugin-upgrade)** |  |
+| **[dsh-plugin-upgrade](https://github.com/PerryLink/dsh-codemod)** |  |
 | **[dsh-policy-brief-draft](https://github.com/PerryLink/dsh-policy-brief-draft)** |  |
 | **[dsh-power-loss-split](https://github.com/PerryLink/dsh-power-loss-split)** |  |
 | **[dsh-power-ticket-check](https://github.com/PerryLink/dsh-power-ticket-check)** |  |

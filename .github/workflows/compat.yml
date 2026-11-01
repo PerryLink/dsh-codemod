@@ -45,14 +45,14 @@ jobs:
       - name: Bare install + real-registry mount
         run: |
           set -euo pipefail
-          TARBALL="$(ls "$RUNNER_TEMP"/dsh-plugin-upgrade-*.tgz | head -n1)"
+          TARBALL="$(ls "$RUNNER_TEMP"/dsh-codemod-*.tgz | head -n1)"
           mkdir -p "$RUNNER_TEMP/bare" && cd "$RUNNER_TEMP/bare"
           pnpm init >/dev/null
           pnpm add "$TARBALL" '@deepseek-ai/cordis@4.0.2' '@deepseek-ai/dsh-skill@0.1.6-alpha.2' >/dev/null
           cat > mount.mjs <<'JS'
           import { Context } from '@deepseek-ai/cordis'
           import SkillRegistry from '@deepseek-ai/dsh-skill'
-          import * as plugin from 'dsh-plugin-upgrade'
+          import * as plugin from 'dsh-codemod'
           const ctx = new Context()
           await ctx.plugin(SkillRegistry)
           const fiber = await ctx.plugin(plugin)
@@ -146,7 +146,7 @@ jobs:
       - name: Install into a scratch profile (builds allowlisted)
         run: |
           set -euo pipefail
-          TARBALL="$(ls "$RUNNER_TEMP"/dsh-plugin-upgrade-*.tgz | head -n1)"
+          TARBALL="$(ls "$RUNNER_TEMP"/dsh-codemod-*.tgz | head -n1)"
           export DSH_HOME="$RUNNER_TEMP/dsh-home"
           mkdir -p "$DSH_HOME/profiles/compat"
           cat > "$DSH_HOME/profiles/compat/pnpm-workspace.yaml" <<'YAML'
@@ -169,7 +169,7 @@ jobs:
           set -euo pipefail
           export DSH_HOME="$RUNNER_TEMP/dsh-home"
           dsh --profile compat --dump-config > dump.txt
-          grep -q "dsh-plugin-upgrade" dump.txt
+          grep -q "dsh-codemod" dump.txt
 
       - name: Keyless headless smoke (best-effort; the mount proof above is the gate)
         run: |
@@ -203,4 +203,4 @@ jobs:
         run: |
           set -euo pipefail
           export DSH_HOME="$RUNNER_TEMP/dsh-home"
-          dsh plugin --profile compat remove dsh-plugin-upgrade
+          dsh plugin --profile compat remove dsh-codemod

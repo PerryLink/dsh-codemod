@@ -1,5 +1,14 @@
 # Changelog
 
+## [3.0.0] - 2026-11-02
+
+### Changed
+
+- Rename the package from `dsh-plugin-upgrade` to `dsh-codemod`.
+- Keep `dsh-plugin-upgrade-scan` as a legacy bin alias; `dsh-codemod` is the new bin.
+- New repository: https://github.com/PerryLink/dsh-codemod; the old repository remains as a pointer.
+
+
 ## [2.2.0] - 2026-11-02
 
 ### Changed

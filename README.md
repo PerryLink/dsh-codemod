@@ -1,37 +1,40 @@
 <div align="center">
 
-# ⬆️ dsh-plugin-upgrade
+# ⬆️ dsh-codemod
+
+> **Renamed:** previously `dsh-plugin-upgrade`; now **`dsh-codemod`**. Old repo stays as a pointer/backup. New home: https://github.com/PerryLink/dsh-codemod
+
 
 > **Non-official companion tool.** Part of the DSH standards family; not a certification, accreditation, security audit, or official endorsement. Standard: https://github.com/PerryLink/dsh-standards. The `dsh.standards` block is a `not-run` placeholder, not a pass.
 
 
 > **Scope: three closed corridors, ending at `0.2.x`.** `legAB` = `0.1.3-alpha.1` → `0.1.5-rc.1`, `legC` = `0.1.5-rc.2` → `0.1.6-alpha.2`, `legD` = `0.1.6-alpha.2 / 0.1.7` → `0.2.x` (measured against the `0.2.2-alpha.2` checkout and the guide's `0.2.1-alpha.2` baseline). The corridor cards stop at their measured seams: `legD` scans five (`D1`–`D5`) and lists the rest of the 0.2 breakage as **advisory (not scanned)** — a clean scan is not a 0.2 compatibility certificate. For routine bundle updates, use the host plugin manager's native `updateBundle()`.
 
-- **1024 store channel**: `npm i -g dsh1024` once, then `dsh1024 plugin --profile web add dsh-plugin-upgrade` (counts toward the [deepseek1024.com](https://deepseek1024.com) install ranking).
-[![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/dsh-plugin-upgrade)
-[![dshfind](https://dshfind.com/api/badge/PerryLink/dsh-plugin-upgrade?metric=downloads)](https://dshfind.com/plugins/PerryLink/dsh-plugin-upgrade?ref=badge)
-[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/PerryLink/dsh-plugin-upgrade/badge)](https://api.securityscorecards.dev/projects/github.com/PerryLink/dsh-plugin-upgrade)
+- **1024 store channel**: `npm i -g dsh1024` once, then `dsh1024 plugin --profile web add dsh-codemod` (counts toward the [deepseek1024.com](https://deepseek1024.com) install ranking).
+[![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/dsh-codemod)
+[![dshfind](https://dshfind.com/api/badge/PerryLink/dsh-codemod?metric=downloads)](https://dshfind.com/plugins/PerryLink/dsh-codemod?ref=badge)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/PerryLink/dsh-codemod/badge)](https://api.securityscorecards.dev/projects/github.com/PerryLink/dsh-codemod)
 
 **Plugin upgrade skill for DeepSeek Harness — one package, one corridor index, three closed corridors: `0.1.3-alpha.1` → `0.1.5-rc.1` (`legAB`), `0.1.5-rc.2` → `0.1.6-alpha.2` (`legC`), and `0.1.6-alpha.2` / `0.1.7` → `0.2.x` (`legD`).**
 
 *The scanner routes itself: it reads the target repository's declared dsh band (or takes `--span`), then applies that corridor's own evidence-bound catalog — `legAB`'s 20 seams (leg A `0.1.3-alpha.1` → `0.1.5-alpha.1` plus leg B `0.1.5-alpha.1` → `0.1.5-rc.1`), `legC`'s 5 (`E1`–`E5`), or `legD`'s 5 (`D1`–`D5`; the rest of the 0.2 breakage is listed as advisory and not scanned). One entry point, so a client half that stopped mounting silently is never mistaken for "typecheck is green".*
 
-> **Official repository.** This is the only official repository of dsh-plugin-upgrade, maintained by PerryLink. It supersedes the retired version-locked packages `dsh-plugin-upgrade` (leg A) and `dsh-plugin-upgrade-rc1` (leg B), and it is the package the `0.1.5-rc.2` → `0.1.6-alpha.2` corridor (leg C) was folded into — the `dsh-plugin-upgrade-016` name never reached the registry. **Both `dsh-plugin-upgrade-015` and `dsh-plugin-upgrade-016` are retired as of 2026-10-05 and receive no further fixes, releases or security updates**; every plugin upgrade continues here, and the corridor is chosen by the version the target repository declares for itself, so no version-locked package per host hop is needed. Same-name repositories under other accounts are not affiliated.
+> **Official repository.** This is the only official repository of dsh-codemod, maintained by PerryLink. It supersedes the retired version-locked packages `dsh-plugin-upgrade` (leg A) and `dsh-plugin-upgrade-rc1` (leg B), and it is the package the `0.1.5-rc.2` → `0.1.6-alpha.2` corridor (leg C) was folded into — the `dsh-plugin-upgrade-016` name never reached the registry. **Both `dsh-plugin-upgrade-015` and `dsh-plugin-upgrade-016` are retired as of 2026-10-05 and receive no further fixes, releases or security updates**; every plugin upgrade continues here, and the corridor is chosen by the version the target repository declares for itself, so no version-locked package per host hop is needed. Same-name repositories under other accounts are not affiliated.
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 [![DSH plugin](https://img.shields.io/badge/dsh--plugin-✅-green)](https://github.com/topics/dsh-plugin)
 [![dsh-doctor](https://raw.githubusercontent.com/PerryLink/dsh-plugin-doctor/main/badges/PerryLink__dsh-plugin-upgrade.svg)](https://github.com/PerryLink/dsh-plugin-doctor#verified-徽章)
 [![DSH Market](https://raw.githubusercontent.com/2BingLing/dsh-market/master/assets/readme/badge-listed-en.svg)](https://dsh.market/)
 [![Node](https://img.shields.io/badge/node-%5E22.19%20%7C%7C%20%3E%3D24-brightgreen.svg)](#)
-[![CI](https://img.shields.io/github/actions/workflow/status/PerryLink/dsh-plugin-upgrade/ci.yml?branch=main&label=CI)](https://github.com/PerryLink/dsh-plugin-upgrade/actions)
-[![Version](https://img.shields.io/github/v/tag/PerryLink/dsh-plugin-upgrade?label=version)](https://github.com/PerryLink/dsh-plugin-upgrade/releases)
-[![npm version](https://img.shields.io/npm/v/dsh-plugin-upgrade)](https://www.npmjs.com/package/dsh-plugin-upgrade)
-[![npm downloads](https://img.shields.io/npm/dm/dsh-plugin-upgrade)](https://www.npmjs.com/package/dsh-plugin-upgrade)
+[![CI](https://img.shields.io/github/actions/workflow/status/PerryLink/dsh-codemod/ci.yml?branch=main&label=CI)](https://github.com/PerryLink/dsh-codemod/actions)
+[![Version](https://img.shields.io/github/v/tag/PerryLink/dsh-codemod?label=version)](https://github.com/PerryLink/dsh-codemod/releases)
+[![npm version](https://img.shields.io/npm/v/dsh-codemod)](https://www.npmjs.com/package/dsh-codemod)
+[![npm downloads](https://img.shields.io/npm/dm/dsh-codemod)](https://www.npmjs.com/package/dsh-codemod)
 
 [English](README.md) · [简体中文](README-zh.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
 
 ```sh
-dsh plugin --profile <name> add dsh-plugin-upgrade
+dsh plugin --profile <name> add dsh-codemod
 ```
 
 
@@ -45,9 +48,9 @@ dsh plugin --profile <name> add dsh-plugin-upgrade
 ## Install & uninstall
 
 ```sh
-dsh plugin --profile web add dsh-plugin-upgrade            # from npm
-dsh plugin --profile web add github:PerryLink/dsh-plugin-upgrade   # from source
-dsh plugin --profile web remove dsh-plugin-upgrade         # uninstall (reversible)
+dsh plugin --profile web add dsh-codemod            # from npm
+dsh plugin --profile web add github:PerryLink/dsh-codemod   # from source
+dsh plugin --profile web remove dsh-codemod         # uninstall (reversible)
 ```
 
 Installing the bundle only registers a skill; removing the row removes the skill. The CLI is a normal `npx` target and needs no profile at all.
@@ -59,13 +62,13 @@ Installing the bundle only registers a skill; removing the row removes the skill
 *English:* part of a 95 plugin family for DeepSeek Harness. If it is useful, **a star helps the next person find it** — nothing is gated behind it.
 
 
-## What is dsh-plugin-upgrade?
+## What is dsh-codemod?
 
 Plugin upgrade skill for DeepSeek Harness — one package, one corridor index, three closed corridors: `0.1.3-alpha.1` → `0.1.5-rc.1` (`legAB`), `0.1.5-rc.2` → `0.1.6-alpha.2` (`legC`), and `0.1.6-alpha.2` / `0.1.7` → `0.2.x` (`legD`).
 
 The scanner routes itself: it reads the target repository's declared dsh band (or takes `--span`), then applies that corridor's own evidence-bound catalog — `legAB`'s 20 seams (leg A `0.1.3-alpha.1` → `0.1.5-alpha.1` plus leg B `0.1.5-alpha.1` → `0.1.5-rc.1`), `legC`'s 5 (`E1`–`E5`), or `legD`'s 5 (`D1`–`D5`). One entry point, so a client half that stopped mounting silently is never mistaken for "typecheck is green".
 
-![Workflow diagram for dsh-plugin-upgrade: call → plugin → result.](docs/assets/dsh-plugin-upgrade-flow.svg)
+![Workflow diagram for dsh-codemod: call → plugin → result.](docs/assets/dsh-plugin-upgrade-flow.svg)
 
 *Workflow overview: call → plugin → result. The examples below use the real command surface.*
 
@@ -73,7 +76,7 @@ The scanner routes itself: it reads the target repository's declared dsh band (o
 
 ## Comparison
 
-![Measured comparison chart for dsh-plugin-upgrade](https://raw.githubusercontent.com/PerryLink/dsh-plugin-upgrade/main/docs/assets/dsh-plugin-upgrade-evidence.png)
+![Measured comparison chart for dsh-codemod](https://raw.githubusercontent.com/PerryLink/dsh-codemod/main/docs/assets/dsh-plugin-upgrade-evidence.png)
 
 40 family repos swept · README §What you get (leg A, 2026-09-09)
 
@@ -96,7 +99,7 @@ The scanner routes itself: it reads the target repository's declared dsh band (o
 Two halves, one seam catalog per corridor:
 
 - **A bundled agent skill (`plugin-upgrade`)** — the corridor cards and a fix-and-verify loop. The body first routes the caller to the corridor that matches its peer band; the model loads it only when a task actually needs it, and the package contributes no system-prompt paragraph and no tool.
-- **A zero-dependency CLI (`dsh-plugin-upgrade-scan`)** — resolves the corridor and reports `file:line` facts for that corridor's seams: `legAB`'s twenty (`S3`, `S8`, `S9`, `M1`, `S4`, `S5`, `S6`, `S7`, `S2`, `S1`, `S10`, `C1`, `C2`, `P1`, `C4`, `C5`, `H1`, `H2`, `H4`, `H3`) re-read from the harness tag ranges on 2026-09-09 (leg A) and 2026-09-10 (leg B), `legC`'s five (`E1`–`E5`) measured on `dsh-v0.1.6-alpha.2` (2026-09-19), or `legD`'s five (`D1`–`D5`) re-read on 2026-11-01 against the `0.2.2-alpha.2` checkout (`ce7073d512`) and the guide's `0.2.1-alpha.2` baseline. Exit `1` on any error-severity hit, so it drops straight into CI.
+- **A zero-dependency CLI (`dsh-codemod`; legacy alias `dsh-plugin-upgrade-scan`)** — resolves the corridor and reports `file:line` facts for that corridor's seams: `legAB`'s twenty (`S3`, `S8`, `S9`, `M1`, `S4`, `S5`, `S6`, `S7`, `S2`, `S1`, `S10`, `C1`, `C2`, `P1`, `C4`, `C5`, `H1`, `H2`, `H4`, `H3`) re-read from the harness tag ranges on 2026-09-09 (leg A) and 2026-09-10 (leg B), `legC`'s five (`E1`–`E5`) measured on `dsh-v0.1.6-alpha.2` (2026-09-19), or `legD`'s five (`D1`–`D5`) re-read on 2026-11-01 against the `0.2.2-alpha.2` checkout (`ce7073d512`) and the guide's `0.2.1-alpha.2` baseline. Exit `1` on any error-severity hit, so it drops straight into CI.
 
 The point is the failure mode this corridor exists to kill: **this span's breakage is mostly silent, from both ends.** The type line can be stale, so the repo compiles against the **old** catalog (seam `M1`), and the bare `conversation` client slot was deleted with no alias while `ctx.slots.inject()` only runs its callback when the declaration exists — so a client half that still targets it stops mounting with no error, no log line and no failed build (seam `C1`). Three classes of breakage survive `typecheck` + `test`:
 
@@ -109,18 +112,18 @@ Honest sizing: leg B's workspace sweep found that the family's client halves use
 ## Quick start
 
 ```sh
-dsh plugin --profile web add github:PerryLink/dsh-plugin-upgrade
+dsh plugin --profile web add github:PerryLink/dsh-codemod
 ```
 
 ```sh
 # 1. install the bundle into your profile
-dsh plugin --profile web add dsh-plugin-upgrade
+dsh plugin --profile web add dsh-codemod
 
 # 2. verify the row mounted
 dsh --profile web --dump-config | grep -A3 'id: dsh-plugin-upgrade'
 
 # 3. scan the plugin you are upgrading
-npx dsh-plugin-upgrade-scan --repo ../my-plugin
+npx dsh-codemod --repo ../my-plugin
 ```
 
 Then ask the agent to use the `plugin-upgrade` skill, or drive the loop yourself with the card that matches your band: `skills/plugin-upgrade/references/v0.1.3-alpha.1-to-v0.1.5-rc.1.md` (`legAB` — leg A is §1, leg B is §2, the merged seam index is §3), `skills/plugin-upgrade/references/v0.1.5-rc.2-to-v0.1.6-alpha.2.md` (`legC`), or `skills/plugin-upgrade/references/v0.1.6-alpha.2-to-v0.2.x.md` (`legD`). The scanner picks the corridor for you; add `--span legC`/`--span legD` when the declared band is ambiguous.
@@ -359,7 +362,7 @@ This project is part of the DeepSeek Harness plugin family from [PerryLink](http
 | **[dsh-plugin-doctor](https://github.com/PerryLink/dsh-plugin-doctor)** |  |
 | **[dsh-plugin-guide](https://github.com/PerryLink/dsh-plugin-guide)** |  |
 | **[dsh-plugin-kit](https://github.com/PerryLink/dsh-plugin-kit)** |  |
-| **[dsh-plugin-upgrade](https://github.com/PerryLink/dsh-plugin-upgrade)** |  |
+| **[dsh-plugin-upgrade](https://github.com/PerryLink/dsh-codemod)** |  |
 | **[dsh-policy-brief-draft](https://github.com/PerryLink/dsh-policy-brief-draft)** |  |
 | **[dsh-power-loss-split](https://github.com/PerryLink/dsh-power-loss-split)** |  |
 | **[dsh-power-ticket-check](https://github.com/PerryLink/dsh-power-ticket-check)** |  |

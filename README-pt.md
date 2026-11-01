@@ -1,12 +1,15 @@
 <div align="center">
 
-# ⬆️ dsh-plugin-upgrade
+# ⬆️ dsh-codemod
+
+> **Renamed:** previously `dsh-plugin-upgrade`; now **`dsh-codemod`**. Old repo stays as a pointer/backup. New home: https://github.com/PerryLink/dsh-codemod
+
 
 > **Escopo: três corredores fechados, até `0.2.x`.** `legAB` = `0.1.3-alpha.1` → `0.1.5-rc.1`, `legC` = `0.1.5-rc.2` → `0.1.6-alpha.2`, `legD` = `0.1.6-alpha.2 / 0.1.7` → `0.2.x` (medido no checkout `0.2.2-alpha.2` e na base `0.2.1-alpha.2` do guia). `legD` escaneia cinco costuras (`D1`–`D5`); o restante das mudanças 0.2 está em **advisory (not scanned)** — um scan limpo não certifica compatibilidade com 0.2. Para atualizações rotineiras do bundle, use o `updateBundle()` nativo do gerenciador de plugins do host.
 
-- **Canal da loja 1024**: rode `npm i -g dsh1024` uma vez e depois `dsh1024 plugin --profile web add dsh-plugin-upgrade` (conta para o ranking de instalações do [deepseek1024.com](https://deepseek1024.com)).
-[![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/dsh-plugin-upgrade)
-[![dshfind](https://dshfind.com/api/badge/PerryLink/dsh-plugin-upgrade?metric=downloads&lang=pt)](https://dshfind.com/pt/plugins/PerryLink/dsh-plugin-upgrade?ref=badge)
+- **Canal da loja 1024**: rode `npm i -g dsh1024` uma vez e depois `dsh1024 plugin --profile web add dsh-codemod` (conta para o ranking de instalações do [deepseek1024.com](https://deepseek1024.com)).
+[![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/dsh-codemod)
+[![dshfind](https://dshfind.com/api/badge/PerryLink/dsh-codemod?metric=downloads&lang=pt)](https://dshfind.com/pt/plugins/PerryLink/dsh-plugin-upgrade?ref=badge)
 
 **Habilidade de atualização de plugins para o DeepSeek Harness — um pacote, um índice de corredores, três corredores fechados: `0.1.3-alpha.1` → `0.1.5-rc.1` (`legAB`), `0.1.5-rc.2` → `0.1.6-alpha.2` (`legC`) e `0.1.6-alpha.2 / 0.1.7` → `0.2.x` (`legD`).**
 
@@ -19,15 +22,15 @@
 [![dsh-doctor](https://raw.githubusercontent.com/PerryLink/dsh-plugin-doctor/main/badges/PerryLink__dsh-plugin-upgrade.svg)](https://github.com/PerryLink/dsh-plugin-doctor#verified-徽章)
 [![DSH Market](https://raw.githubusercontent.com/2BingLing/dsh-market/master/assets/readme/badge-listed-en.svg)](https://dsh.market/)
 [![Node](https://img.shields.io/badge/node-%5E22.19%20%7C%7C%20%3E%3D24-brightgreen.svg)](#)
-[![CI](https://img.shields.io/github/actions/workflow/status/PerryLink/dsh-plugin-upgrade/ci.yml?branch=main&label=CI)](https://github.com/PerryLink/dsh-plugin-upgrade/actions)
-[![Version](https://img.shields.io/github/v/tag/PerryLink/dsh-plugin-upgrade?label=version)](https://github.com/PerryLink/dsh-plugin-upgrade/releases)
-[![npm version](https://img.shields.io/npm/v/dsh-plugin-upgrade)](https://www.npmjs.com/package/dsh-plugin-upgrade)
-[![npm downloads](https://img.shields.io/npm/dm/dsh-plugin-upgrade)](https://www.npmjs.com/package/dsh-plugin-upgrade)
+[![CI](https://img.shields.io/github/actions/workflow/status/PerryLink/dsh-codemod/ci.yml?branch=main&label=CI)](https://github.com/PerryLink/dsh-codemod/actions)
+[![Version](https://img.shields.io/github/v/tag/PerryLink/dsh-codemod?label=version)](https://github.com/PerryLink/dsh-codemod/releases)
+[![npm version](https://img.shields.io/npm/v/dsh-codemod)](https://www.npmjs.com/package/dsh-plugin-upgrade)
+[![npm downloads](https://img.shields.io/npm/dm/dsh-codemod)](https://www.npmjs.com/package/dsh-plugin-upgrade)
 
 [English](README.md) · [简体中文](README-zh.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
 
 ```sh
-dsh plugin --profile <name> add dsh-plugin-upgrade
+dsh plugin --profile <name> add dsh-codemod
 ```
 
 
@@ -42,7 +45,7 @@ dsh plugin --profile <name> add dsh-plugin-upgrade
 ## Instalação e desinstalação
 
 ```sh
-dsh plugin --profile web add dsh-plugin-upgrade            # do npm
+dsh plugin --profile web add dsh-codemod            # do npm
 dsh plugin --profile web add github:PerryLink/dsh-plugin-upgrade   # do código-fonte
 dsh plugin --profile web remove dsh-plugin-upgrade         # desinstalar (reversível)
 ```
@@ -111,7 +114,7 @@ dsh plugin --profile web add github:PerryLink/dsh-plugin-upgrade
 
 ```sh
 # 1. instale o bundle no seu perfil
-dsh plugin --profile web add dsh-plugin-upgrade
+dsh plugin --profile web add dsh-codemod
 
 # 2. confirme que a linha montou
 dsh --profile web --dump-config | grep -A3 'id: dsh-plugin-upgrade'
@@ -361,7 +364,7 @@ Este projeto faz parte da família de plugins do DeepSeek Harness da [PerryLink]
 | **[dsh-plugin-doctor](https://github.com/PerryLink/dsh-plugin-doctor)** |  |
 | **[dsh-plugin-guide](https://github.com/PerryLink/dsh-plugin-guide)** |  |
 | **[dsh-plugin-kit](https://github.com/PerryLink/dsh-plugin-kit)** |  |
-| **[dsh-plugin-upgrade](https://github.com/PerryLink/dsh-plugin-upgrade)** |  |
+| **[dsh-plugin-upgrade](https://github.com/PerryLink/dsh-codemod)** |  |
 | **[dsh-policy-brief-draft](https://github.com/PerryLink/dsh-policy-brief-draft)** |  |
 | **[dsh-power-loss-split](https://github.com/PerryLink/dsh-power-loss-split)** |  |
 | **[dsh-power-ticket-check](https://github.com/PerryLink/dsh-power-ticket-check)** |  |

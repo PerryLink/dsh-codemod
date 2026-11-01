@@ -63,8 +63,8 @@ jobs:
           NPM_CONFIG_LOGLEVEL: verbose
         run: |
           version="$(node -p "require('./package.json').version")"
-          if npm view "dsh-plugin-upgrade@${version}" version >/dev/null 2>&1; then
-            echo "dsh-plugin-upgrade@${version} is already published; skipping npm publish"
+          if npm view "dsh-codemod@${version}" version >/dev/null 2>&1; then
+            echo "dsh-codemod@${version} is already published; skipping npm publish"
           else
             npm publish --provenance --access public
           fi
