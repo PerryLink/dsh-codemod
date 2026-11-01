@@ -2,6 +2,9 @@
 
 # ⬆️ dsh-plugin-upgrade
 
+> **Non-official companion tool.** Part of the DSH standards family; not a certification, accreditation, security audit, or official endorsement. Standard: https://github.com/PerryLink/dsh-standards. The `dsh.standards` block is a `not-run` placeholder, not a pass.
+
+
 > **Scope: three closed corridors, ending at `0.2.x`.** `legAB` = `0.1.3-alpha.1` → `0.1.5-rc.1`, `legC` = `0.1.5-rc.2` → `0.1.6-alpha.2`, `legD` = `0.1.6-alpha.2 / 0.1.7` → `0.2.x` (measured against the `0.2.2-alpha.2` checkout and the guide's `0.2.1-alpha.2` baseline). The corridor cards stop at their measured seams: `legD` scans five (`D1`–`D5`) and lists the rest of the 0.2 breakage as **advisory (not scanned)** — a clean scan is not a 0.2 compatibility certificate. For routine bundle updates, use the host plugin manager's native `updateBundle()`.
 
 - **1024 store channel**: `npm i -g dsh1024` once, then `dsh1024 plugin --profile web add dsh-plugin-upgrade` (counts toward the [deepseek1024.com](https://deepseek1024.com) install ranking).
