@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const FILES = ['README.md', 'README-zh.md', 'README-es.md', 'README-pt.md', 'README-hi.md']
-const INSTALL_COMMAND = 'dsh plugin --profile web add dsh-plugin-upgrade'
+const INSTALL_COMMAND = 'dsh plugin --profile web add dsh-codemod'
 const failures = []
 /** @param {string} file @returns {string} */
 const read = (file) => {
