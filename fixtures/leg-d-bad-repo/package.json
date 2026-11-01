@@ -1,0 +1,8 @@
+{
+  "name": "leg-d-bad-repo",
+  "private": true,
+  "type": "module",
+  "peerDependencies": {
+    "@deepseek-ai/dsh-skill": ">=0.1.6-0 <0.2.0"
+  }
+}

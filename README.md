@@ -2,16 +2,16 @@
 
 # ⬆️ dsh-plugin-upgrade
 
-> **Scope: corridors end at `0.1.6-alpha.2`.** There is no `0.1.6 → 0.2.x` corridor; the package can still be installed on 0.2.x hosts to scan old plugin repos, but it is not a 0.2.x migration path. For routine bundle updates, use the host plugin manager's native `updateBundle()`.
+> **Scope: three closed corridors, ending at `0.2.x`.** `legAB` = `0.1.3-alpha.1` → `0.1.5-rc.1`, `legC` = `0.1.5-rc.2` → `0.1.6-alpha.2`, `legD` = `0.1.6-alpha.2 / 0.1.7` → `0.2.x` (measured against the `0.2.2-alpha.2` checkout and the guide's `0.2.1-alpha.2` baseline). The corridor cards stop at their measured seams: `legD` scans five (`D1`–`D5`) and lists the rest of the 0.2 breakage as **advisory (not scanned)** — a clean scan is not a 0.2 compatibility certificate. For routine bundle updates, use the host plugin manager's native `updateBundle()`.
 
 - **1024 store channel**: `npm i -g dsh1024` once, then `dsh1024 plugin --profile web add dsh-plugin-upgrade` (counts toward the [deepseek1024.com](https://deepseek1024.com) install ranking).
 [![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/dsh-plugin-upgrade)
 [![dshfind](https://dshfind.com/api/badge/PerryLink/dsh-plugin-upgrade?metric=downloads)](https://dshfind.com/plugins/PerryLink/dsh-plugin-upgrade?ref=badge)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/PerryLink/dsh-plugin-upgrade/badge)](https://api.securityscorecards.dev/projects/github.com/PerryLink/dsh-plugin-upgrade)
 
-**Plugin upgrade skill for DeepSeek Harness — one package, one corridor index, two closed corridors: `0.1.3-alpha.1` → `0.1.5-rc.1` (`legAB`) and `0.1.5-rc.2` → `0.1.6-alpha.2` (`legC`).**
+**Plugin upgrade skill for DeepSeek Harness — one package, one corridor index, three closed corridors: `0.1.3-alpha.1` → `0.1.5-rc.1` (`legAB`), `0.1.5-rc.2` → `0.1.6-alpha.2` (`legC`), and `0.1.6-alpha.2` / `0.1.7` → `0.2.x` (`legD`).**
 
-*The scanner routes itself: it reads the target repository's declared dsh band (or takes `--span`), then applies that corridor's own evidence-bound catalog — `legAB`'s 20 seams (leg A `0.1.3-alpha.1` → `0.1.5-alpha.1` plus leg B `0.1.5-alpha.1` → `0.1.5-rc.1`) or `legC`'s 5 seams (`E1`–`E5`). One entry point, so a client half that stopped mounting silently is never mistaken for "typecheck is green".*
+*The scanner routes itself: it reads the target repository's declared dsh band (or takes `--span`), then applies that corridor's own evidence-bound catalog — `legAB`'s 20 seams (leg A `0.1.3-alpha.1` → `0.1.5-alpha.1` plus leg B `0.1.5-alpha.1` → `0.1.5-rc.1`), `legC`'s 5 (`E1`–`E5`), or `legD`'s 5 (`D1`–`D5`; the rest of the 0.2 breakage is listed as advisory and not scanned). One entry point, so a client half that stopped mounting silently is never mistaken for "typecheck is green".*
 
 > **Official repository.** This is the only official repository of dsh-plugin-upgrade, maintained by PerryLink. It supersedes the retired version-locked packages `dsh-plugin-upgrade` (leg A) and `dsh-plugin-upgrade-rc1` (leg B), and it is the package the `0.1.5-rc.2` → `0.1.6-alpha.2` corridor (leg C) was folded into — the `dsh-plugin-upgrade-016` name never reached the registry. **Both `dsh-plugin-upgrade-015` and `dsh-plugin-upgrade-016` are retired as of 2026-10-05 and receive no further fixes, releases or security updates**; every plugin upgrade continues here, and the corridor is chosen by the version the target repository declares for itself, so no version-locked package per host hop is needed. Same-name repositories under other accounts are not affiliated.
 
@@ -58,9 +58,9 @@ Installing the bundle only registers a skill; removing the row removes the skill
 
 ## What is dsh-plugin-upgrade?
 
-Plugin upgrade skill for DeepSeek Harness — one package, one corridor index, two closed corridors: `0.1.3-alpha.1` → `0.1.5-rc.1` (`legAB`) and `0.1.5-rc.2` → `0.1.6-alpha.2` (`legC`).
+Plugin upgrade skill for DeepSeek Harness — one package, one corridor index, three closed corridors: `0.1.3-alpha.1` → `0.1.5-rc.1` (`legAB`), `0.1.5-rc.2` → `0.1.6-alpha.2` (`legC`), and `0.1.6-alpha.2` / `0.1.7` → `0.2.x` (`legD`).
 
-The scanner routes itself: it reads the target repository's declared dsh band (or takes `--span`), then applies that corridor's own evidence-bound catalog — `legAB`'s 20 seams (leg A `0.1.3-alpha.1` → `0.1.5-alpha.1` plus leg B `0.1.5-alpha.1` → `0.1.5-rc.1`) or `legC`'s 5 seams (`E1`–`E5`). One entry point, so a client half that stopped mounting silently is never mistaken for "typecheck is green".
+The scanner routes itself: it reads the target repository's declared dsh band (or takes `--span`), then applies that corridor's own evidence-bound catalog — `legAB`'s 20 seams (leg A `0.1.3-alpha.1` → `0.1.5-alpha.1` plus leg B `0.1.5-alpha.1` → `0.1.5-rc.1`), `legC`'s 5 (`E1`–`E5`), or `legD`'s 5 (`D1`–`D5`). One entry point, so a client half that stopped mounting silently is never mistaken for "typecheck is green".
 
 ![Workflow diagram for dsh-plugin-upgrade: call → plugin → result.](docs/assets/dsh-plugin-upgrade-flow.svg)
 
@@ -78,13 +78,13 @@ The scanner routes itself: it reads the target repository's declared dsh band (o
 
 | Surface | Status |
 |---|---|
-| Harness | DeepSeek Harness `dsh-v0.2.1-alpha.1` (current line; dev/test pins `0.2.1-alpha.1`). The corridor index is evidence-bound to the spans it measured: `legAB` = `0.1.3-alpha.1 → 0.1.5-rc.1` (tag `dsh-v0.1.7-alpha.2` = `183f08e9c6dd`; leg A→B handoff `dsh-v0.1.7-alpha.2` = `5dda764ed3aa`) and `legC` = `0.1.5-rc.2 → 0.1.6-alpha.2` (tag `dsh-v0.1.7-alpha.2`). Peer band `@deepseek-ai/dsh-skill >=0.1.6-0 <0.2.0 \|\| >=0.2.0-0 <0.3.0 \|\| >=0.2.1-0 <0.3.0`, `@deepseek-ai/cordis ^4.0.5-alpha.1`, `@deepseek-ai/schemastery ^3.18.5-alpha.1`. |
+| Harness | DeepSeek Harness `dsh-v0.2.2-alpha.2` (measured checkout `ce7073d512`; guide baseline `dsh-v0.2.1-alpha.2` = `d743267`). The corridor index is evidence-bound to the spans it measured: `legAB` = `0.1.3-alpha.1 → 0.1.5-rc.1` (tag `dsh-v0.1.7-alpha.2` = `183f08e9c6dd`; leg A→B handoff `dsh-v0.1.7-alpha.2` = `5dda764ed3aa`), `legC` = `0.1.5-rc.2 → 0.1.6-alpha.2` (tag `dsh-v0.1.6-alpha.2`), and `legD` = `0.1.6-alpha.2 / 0.1.7 → 0.2.x` (`0.2.2-alpha.2`). Peer band `@deepseek-ai/dsh-skill >=0.1.6-0 <0.2.0 \|\| >=0.2.0-0 <0.3.0 \|\| >=0.2.1-0 <0.3.0`, `@deepseek-ai/cordis ^4.0.5-alpha.1`, `@deepseek-ai/schemastery ^3.18.5-alpha.1`. |
 | Node | `^22.19.0 \|\| >=24.0.0` |
 | Platforms | Anywhere Node runs; the scanner is filesystem-only and platform-neutral |
 | Model | Text-only models fully supported; the skill is a Markdown body, no tool or vision requirement |
-| Corridor index | One package, one entry point. `lib/route.mjs` holds the closed corridors and the CLI routes to the matching one from the target repo's declared band (`engines.dsh`, the `@deepseek-ai/dsh*` ranges); `--span legAB\|legC` overrides the guess and an undeclared band falls back to the older corridor. The two catalogs are never merged: each corridor keeps its own seam array, card, evidence, fixtures and parity gate. |
-| Scope | **Two closed corridors**: `legAB` = `0.1.3-alpha.1` → `0.1.5-rc.1` (leg A + leg B), `legC` = `0.1.5-rc.2` → `0.1.6-alpha.2`. A corridor never widens: a hop that adds a seam is a new corridor — a new card and a new index row, not a new package. |
-| Legs | Every leg lives in this package: leg A keeps the `S1`–`S10` + `M1` seams, leg B keeps `C1`, `C2`, `C4`, `C5`, `H1`–`H4`, `P1`, and leg C keeps `E1`–`E5` — each with its own evidence, card section, fixtures and rollback path. There is no sibling package to install. |
+| Corridor index | One package, one entry point. `lib/route.mjs` holds the closed corridors and the CLI routes to the matching one from the target repo's declared band (`engines.dsh`, the `@deepseek-ai/dsh*` ranges); `--span legAB\|legC\|legD` overrides the guess and an undeclared band falls back to the oldest corridor. The three catalogs are never merged: each corridor keeps its own seam array, card, evidence, fixtures and parity gate. |
+| Scope | **Three closed corridors**: `legAB` = `0.1.3-alpha.1` → `0.1.5-rc.1` (leg A + leg B), `legC` = `0.1.5-rc.2` → `0.1.6-alpha.2`, `legD` = `0.1.6-alpha.2 / 0.1.7` → `0.2.x` (5 scanned seams + an explicit advisory section). A corridor never widens: a hop that adds a seam is a new corridor — a new card and a new index row, not a new package. |
+| Legs | Every leg lives in this package: leg A keeps the `S1`–`S10` + `M1` seams, leg B keeps `C1`, `C2`, `C4`, `C5`, `H1`–`H4`, `P1`, leg C keeps `E1`–`E5`, and leg D keeps `D1`–`D5` — each with its own evidence, card section, fixtures and rollback path. There is no sibling package to install. |
 | `C3` | Retired: leg B's card spelled the stale-type-line false green `C3`, which is the same defect as leg A's `M1`. The fold is recorded on the card; `--seams C3` matches nothing. |
 | Sibling | Do not mount the retired `dsh-plugin-upgrade` in the same profile: both register the agent skill `plugin-upgrade`, so the second mount collides on the skill name. That package is deprecated on npm and its repository is retired; this package replaces both of its legs. |
 
@@ -93,7 +93,7 @@ The scanner routes itself: it reads the target repository's declared dsh band (o
 Two halves, one seam catalog per corridor:
 
 - **A bundled agent skill (`plugin-upgrade`)** — the corridor cards and a fix-and-verify loop. The body first routes the caller to the corridor that matches its peer band; the model loads it only when a task actually needs it, and the package contributes no system-prompt paragraph and no tool.
-- **A zero-dependency CLI (`dsh-plugin-upgrade-scan`)** — resolves the corridor and reports `file:line` facts for that corridor's seams: `legAB`'s twenty (`S3`, `S8`, `S9`, `M1`, `S4`, `S5`, `S6`, `S7`, `S2`, `S1`, `S10`, `C1`, `C2`, `P1`, `C4`, `C5`, `H1`, `H2`, `H4`, `H3`) re-read from the harness tag ranges on 2026-09-09 (leg A) and 2026-09-10 (leg B), or `legC`'s five (`E1`–`E5`) measured on `dsh-v0.1.7-alpha.1` (2026-09-19). Exit `1` on any error-severity hit, so it drops straight into CI.
+- **A zero-dependency CLI (`dsh-plugin-upgrade-scan`)** — resolves the corridor and reports `file:line` facts for that corridor's seams: `legAB`'s twenty (`S3`, `S8`, `S9`, `M1`, `S4`, `S5`, `S6`, `S7`, `S2`, `S1`, `S10`, `C1`, `C2`, `P1`, `C4`, `C5`, `H1`, `H2`, `H4`, `H3`) re-read from the harness tag ranges on 2026-09-09 (leg A) and 2026-09-10 (leg B), `legC`'s five (`E1`–`E5`) measured on `dsh-v0.1.6-alpha.2` (2026-09-19), or `legD`'s five (`D1`–`D5`) re-read on 2026-11-01 against the `0.2.2-alpha.2` checkout (`ce7073d512`) and the guide's `0.2.1-alpha.2` baseline. Exit `1` on any error-severity hit, so it drops straight into CI.
 
 The point is the failure mode this corridor exists to kill: **this span's breakage is mostly silent, from both ends.** The type line can be stale, so the repo compiles against the **old** catalog (seam `M1`), and the bare `conversation` client slot was deleted with no alias while `ctx.slots.inject()` only runs its callback when the declaration exists — so a client half that still targets it stops mounting with no error, no log line and no failed build (seam `C1`). Three classes of breakage survive `typecheck` + `test`:
 
@@ -120,7 +120,7 @@ dsh --profile web --dump-config | grep -A3 'id: dsh-plugin-upgrade'
 npx dsh-plugin-upgrade-scan --repo ../my-plugin
 ```
 
-Then ask the agent to use the `plugin-upgrade` skill, or drive the loop yourself with the card that matches your band: `skills/plugin-upgrade/references/v0.1.3-alpha.1-to-v0.1.5-rc.1.md` (`legAB` — leg A is §1, leg B is §2, the merged seam index is §3) or `skills/plugin-upgrade/references/v0.1.5-rc.2-to-v0.1.6-alpha.2.md` (`legC`). The scanner picks the corridor for you; add `--span legC` when the declared band is ambiguous.
+Then ask the agent to use the `plugin-upgrade` skill, or drive the loop yourself with the card that matches your band: `skills/plugin-upgrade/references/v0.1.3-alpha.1-to-v0.1.5-rc.1.md` (`legAB` — leg A is §1, leg B is §2, the merged seam index is §3), `skills/plugin-upgrade/references/v0.1.5-rc.2-to-v0.1.6-alpha.2.md` (`legC`), or `skills/plugin-upgrade/references/v0.1.6-alpha.2-to-v0.2.x.md` (`legD`). The scanner picks the corridor for you; add `--span legC`/`--span legD` when the declared band is ambiguous.
 
 ### Examples
 
@@ -197,15 +197,15 @@ The plugin mounts loud: a missing `SKILL.md`, an empty body, or a frontmatter wi
 **CLI** — `dsh-plugin-upgrade-scan`:
 
 ```sh
-dsh-plugin-upgrade-scan [--repo <path>] [--span legAB|legC|<span>] [--json <out.json>] [--seams S3,C1,P1] [--quiet]
+dsh-plugin-upgrade-scan [--repo <path>] [--span legAB|legC|legD|<span>] [--json <out.json>] [--seams S3,C1,D1] [--quiet]
 ```
 
 | Flag | Meaning |
 |---|---|
 | `--repo <path>` | Repository to scan (default: cwd). Its declared dsh band chooses the corridor. |
-| `--span legAB\|legC\|<span>` | Force a corridor instead of guessing from the declared band. An unknown band falls back to `legAB`. |
+| `--span legAB\|legC\|legD\|<span>` | Force a corridor instead of guessing from the declared band. An unknown band falls back to `legAB`. The wrapper consumes the flag before the catalog sees argv. |
 | `--json <out.json>` | Also write the machine-readable report (`repo`, `scannedAt`, `files`, `hits[]`, `bySeam`). |
-| `--seams S3,C1,P1` | Restrict to specific seams of the resolved corridor's catalog (ids are never shared between corridors). |
+| `--seams S3,C1,D1` | Restrict to specific seams of the resolved corridor's catalog (ids are never shared between corridors). |
 | `--quiet` | Suppress the human rendering (pair with `--json`). |
 
 Exit codes: `0` no error-severity hit · `1` at least one error-severity hit · `2` usage or scan failure. A clean scan is necessary but not sufficient — the exit criterion is a real-host smoke, plus a resume round-trip for log writers (leg A) and a real browser assertion for the client half (leg B).
@@ -255,7 +255,8 @@ The same discipline applies as for `legAB`: a clean scan is necessary, not suffi
 
 ## What this does not cover
 
-- **A hop past every corridor here.** `legAB` ends at `0.1.5-rc.1` by construction: the harness hop `0.1.5-rc.1` → `0.1.5-rc.2` added no plugin-facing seam (this package's own dev/test pin now runs on the `0.1.7-rc.2` line, so the catalog is verified against those published types; the compat workflow's probe still anchors `0.1.6-alpha.2`), and `legC` covers `0.1.5-rc.2` → `0.1.6-alpha.2`. A later hop that adds a seam is **not** covered: a corridor is closed, and widening a card is worse than adding one. It gets a new card and a new index row — not a new package.
+- **A hop past every corridor here.** `legAB` ends at `0.1.5-rc.1` by construction (the harness hop `0.1.5-rc.1` → `0.1.5-rc.2` added no plugin-facing seam), `legC` covers `0.1.5-rc.2` → `0.1.6-alpha.2`, and `legD` covers `0.1.6-alpha.2 / 0.1.7` → `0.2.x` against the measured `0.2.2-alpha.2` checkout. A later hop that adds a seam — or a 0.2.x line past `0.2.2-alpha.2` — is **not** covered: a corridor is closed, and widening a card is worse than adding one. It gets a new card and a new index row, not a new package.
+- **A 0.2 migration certificate.** `legD` scans five deletions/renames only. V4 session-log parsing, the `{kind:'plugin'}` message source, deleted composition rows, `dsh.client.inject` shape, the `stats` → `activity`/`usage` split, `mode: 'both'`, and the guide's `L1`–`L19` are real 0.2 changes listed in the card's **advisory (not scanned)** section; none of them is auto-detected.
 - **The `0.1.1` → `0.1.2` hop.** Use the community convergence skill.
 - **Restating across legs.** Leg A owns the session-format seams (`assistant/message.stream`, `SessionHandleReadResult`, `EpochHeader.system`, `ctx.agent`, `Inbox`, `SystemPrompt.persona`, the V3 log generation) and leg B does not restate them — the whole `packages/core/session/src` diff in leg B's range is two added event-type literals and one comment line. Each leg's card section keeps its own scope statement.
 - **The DSH user-facing upgrade path.** This package upgrades *plugin source code*, not a user's harness installation.
@@ -280,7 +281,7 @@ npm run check:readmes              # five-language README consistency
 npm pack
 ```
 
-The scanner has a synthetic fixture pair **per `legAB` leg**: `fixtures/leg-a-bad-repo` (leg A's session/config seams, every error seam present on purpose) with `fixtures/leg-a-good-repo` (adapted), and `fixtures/bad-repo` (leg B's client-slot seams) with `fixtures/good-repo` (adapted) — plus a live negative on a family repository already pinned to `0.1.5-rc.1`, so a regression in the catalog fails the suite rather than a downstream user. `test/card.test.mjs` asserts that each card's index and its own catalog (`lib/scan.mjs` for `legAB`, `lib/scan-0.1.6.mjs` for `legC`) name **exactly** the same seam ids with the same severities, that `legAB`'s `CARD_ONLY` is exactly `['H3']` while `legC`'s is empty, and that the two catalogs share no seam id — the evidence-binding rule as a machine gate, per corridor.
+The scanner has a synthetic fixture pair **per corridor**: `fixtures/leg-a-bad-repo` (leg A's session/config seams, every error seam present on purpose) with `fixtures/leg-a-good-repo` (adapted), `fixtures/bad-repo` (leg B's client-slot seams) with `fixtures/good-repo` (adapted), `fixtures/leg-c-bad-repo` with `fixtures/leg-c-good-repo`, and `fixtures/leg-d-bad-repo` with `fixtures/leg-d-good-repo` — plus a live negative on a family repository already pinned to `0.1.5-rc.1`, so a regression in a catalog fails the suite rather than a downstream user. `test/card.test.mjs` asserts that each card's index and its own catalog (`lib/scan.mjs` for `legAB`, `lib/scan-0.1.6.mjs` for `legC`, `lib/scan-0.2.mjs` for `legD`) name **exactly** the same seam ids with the same severities, that `legAB`'s `CARD_ONLY` is exactly `['H3']` while `legC`'s and `legD`'s are empty, and that the three catalogs share no seam id — the evidence-binding rule as a machine gate, per corridor.
 
 ## Topics
 

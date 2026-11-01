@@ -26,15 +26,17 @@ const root = path.resolve(here, '..')
 
 const legAB = await import('../lib/scan.mjs')
 const legC = await import('../lib/scan-0.1.6.mjs')
+const legD = await import('../lib/scan-0.2.mjs')
 
-test('the two catalogs stay disjoint and together cover 25 seams', () => {
-  assert.equal(legAB.SEAMS.length + legC.SEAMS.length, 25)
-  const overlap = legAB.SEAM_IDS.filter(id => legC.SEAM_IDS.includes(id))
+test('the three catalogs stay disjoint and together cover 30 seams', () => {
+  assert.equal(legAB.SEAMS.length + legC.SEAMS.length + legD.SEAMS.length, 30)
+  const overlap = legAB.SEAM_IDS.filter(id => legC.SEAM_IDS.includes(id) || legD.SEAM_IDS.includes(id))
   assert.deepEqual(overlap, [], 'a seam id may not be claimed by two corridors')
+  assert.deepEqual(legC.SEAM_IDS.filter(id => legD.SEAM_IDS.includes(id)), [])
 })
 
 test('every corridor names a card and a catalog that exist', () => {
-  assert.equal(CORRIDORS.length, 2)
+  assert.equal(CORRIDORS.length, 3)
   for (const corridor of CORRIDORS) {
     const card = readFileSync(path.join(root, corridor.card), 'utf8')
     const catalog = readFileSync(path.join(root, corridor.catalog.replace('../', '')), 'utf8')
@@ -53,6 +55,9 @@ test('the declared band routes, and an unknown band falls back to the older corr
     return dir
   }
   assert.equal(resolveCorridor({ repoDir: makeRepo('>=0.1.6-0 <0.2.0') }).id, 'legC')
+  assert.equal(resolveCorridor({ repoDir: makeRepo('>=0.1.7-0 <0.2.0') }).id, 'legD')
+  assert.equal(resolveCorridor({ repoDir: makeRepo('>=0.2.1-0 <0.3.0') }).id, 'legD')
+  assert.equal(resolveCorridor({ repoDir: makeRepo('>=0.1.6-0 <0.2.0 || >=0.2.1-0 <0.3.0') }).id, 'legD')
   assert.equal(resolveCorridor({ repoDir: makeRepo('>=0.1.2-rc.1 <0.2.0') }).id, 'legAB')
   assert.equal(resolveCorridor({ repoDir: mkdtempSync(path.join(tmpdir(), 'corridor-')) }).id, 'legAB')
   assert.equal(resolveCorridor({}).id, 'legAB')
@@ -63,6 +68,8 @@ test('an explicit --span overrides the band', () => {
   assert.equal(resolveCorridor({ span: 'legC' }).id, 'legC')
   assert.equal(resolveCorridor({ span: '0.1.5-rc.2 -> 0.1.6-alpha.2' }).id, 'legC')
   assert.equal(resolveCorridor({ span: 'legAB' }).id, 'legAB')
+  assert.equal(resolveCorridor({ span: 'legD' }).id, 'legD')
+  assert.equal(resolveCorridor({ span: '0.1.6-alpha.2 -> 0.2.x' }).id, 'legD')
   assert.equal(corridorById('nope'), undefined)
   assert.equal(spanFromArgv(['--repo', 'D:/x', '--span', 'legC']), 'legC')
   assert.equal(spanFromArgv(['--span=legC']), 'legC')
@@ -84,8 +91,10 @@ test('a band past every corridor is reported, not silently routed', () => {
     writeFileSync(path.join(dir, 'package.json'), JSON.stringify({ name: 'sample', engines: { dsh: range } }))
     return dir
   }
-  assert.equal(beyondCorridors(makeRepo('0.2.1-rc.2')), true)
-  assert.equal(beyondCorridors(makeRepo('>=0.1.7-0 <0.2.0')), true)
+  assert.equal(beyondCorridors(makeRepo('0.2.3-alpha.1')), true)
+  assert.equal(beyondCorridors(makeRepo('0.2.1-rc.2')), false)
+  assert.equal(beyondCorridors(makeRepo('0.2.2-alpha.2')), false)
+  assert.equal(beyondCorridors(makeRepo('>=0.1.7-0 <0.2.0')), false)
   assert.equal(beyondCorridors(makeRepo('>=0.1.6-alpha.2 <0.2.0')), false)
   assert.equal(beyondCorridors(makeRepo('>=0.1.2-rc.1 <0.2.0')), false)
   assert.equal(beyondCorridors(mkdtempSync(path.join(tmpdir(), 'corridor-empty-'))), false)

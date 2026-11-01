@@ -17,17 +17,20 @@ export interface Config {
 }
 
 /**
- * The merged seam-id union: leg A `S1`–`S10` + `M1`, leg B `C1`, `C2`, `C4`,
- * `C5`, `H1`–`H4`, `P1`. Leg B's former `C3` is leg A's `M1` and is **not** a
- * member: the scanner, `--seams` and the card index all reject it.
+ * The seam-id union of the three closed corridors: leg A `S1`–`S10` + `M1`,
+ * leg B `C1`, `C2`, `C4`, `C5`, `H1`–`H4`, `P1`, leg C `E1`–`E5`, and leg D
+ * `D1`–`D5`. Leg B's former `C3` is leg A's `M1` and is **not** a member: the
+ * scanner, `--seams` and the card index all reject it.
  */
 export type SeamId =
   | 'S3' | 'S8' | 'S9' | 'M1' | 'S4' | 'S5' | 'S6' | 'S7' | 'S2' | 'S1' | 'S10'
   | 'C1' | 'C2' | 'P1' | 'C4' | 'C5' | 'H1' | 'H2' | 'H4' | 'H3'
+  | 'E1' | 'E2' | 'E3' | 'E4' | 'E5'
+  | 'D1' | 'D2' | 'D3' | 'D4' | 'D5'
 
 /** One seam hit produced by the scanner. */
 export interface SeamHit {
-  /** Seam id, one of the merged 20 (`S3`, `S8`, `S9`, `M1`, `S4`, `S5`, `S6`, `S7`, `S2`, `S1`, `S10`, `C1`, `C2`, `P1`, `C4`, `C5`, `H1`, `H2`, `H4`, `H3`). */
+  /** Seam id of the resolved corridor (`S*`/`M1`/`C*`/`P1`/`H*` for legAB, `E1`–`E5` for legC, `D1`–`D5` for legD). */
   seam: SeamId
   /** 'error' fails the scan; 'warn' and 'info' are manual-review leads. */
   severity: 'error' | 'warn' | 'info'
@@ -51,9 +54,10 @@ export interface ScanReport {
 }
 
 /**
- * One entry of the seam catalog shared by the card, the CLI and the plugin.
- * `test` is null for a card-only seam (`H3`) and for the two structured seams
- * (`M1`, `P1`), which run dedicated file-level detectors instead of a regex.
+ * One entry of a corridor's seam catalog, shared by its card, the CLI and the
+ * plugin. `test` is null for a card-only seam (`H3`) and for the structured
+ * seams (`M1`, `P1`, `D1`), which run dedicated file-level detectors instead of
+ * a regex.
  */
 export interface Seam {
   id: SeamId
@@ -63,7 +67,7 @@ export interface Seam {
   test: RegExp | null
 }
 
-/** Scan a repository directory for the merged 0.1.3-alpha.1 -> 0.1.5-rc.1 seams. */
+/** Scan a repository directory for the merged 0.1.3-alpha.1 -> 0.1.5-rc.1 seams (`legAB`). */
 export declare function scanRepo(repoDir: string, options?: { seams?: string[] }): ScanReport
 
 /** Render a report for a terminal. */

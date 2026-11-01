@@ -2,14 +2,14 @@
 
 # ⬆️ dsh-plugin-upgrade
 
-> **范围：corridor 到 `0.1.6-alpha.2` 为止。** 没有 `0.1.6 → 0.2.x` 的卡片；本包仍可装在 0.2.x 宿主上扫描旧插件仓，但它不是 0.2.x 迁移路径。日常 bundle 更新请用宿主插件管理器的原生 `updateBundle()`。
+> **范围：三条闭合走廊，终点到 `0.2.x`。** `legAB` = `0.1.3-alpha.1` → `0.1.5-rc.1`，`legC` = `0.1.5-rc.2` → `0.1.6-alpha.2`，`legD` = `0.1.6-alpha.2 / 0.1.7` → `0.2.x`（度量基线：`0.2.2-alpha.2` checkout 与指南的 `0.2.1-alpha.2`）。`legD` 只扫描五条（`D1`–`D5`），其余 0.2 破坏项列在**advisory (not scanned)**；干净扫描不是 0.2 兼容证书。日常 bundle 更新请用宿主插件管理器的原生 `updateBundle()`。
 - **1024 商店通道**：先 `npm i -g dsh1024`，再执行 `dsh1024 plugin --profile web add dsh-plugin-upgrade`（计入 [deepseek1024.com](https://deepseek1024.com) 安装排行）。
 [![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/dsh-plugin-upgrade)
 [![dshfind](https://dshfind.com/api/badge/PerryLink/dsh-plugin-upgrade?metric=downloads&lang=zh)](https://dshfind.com/zh/plugins/PerryLink/dsh-plugin-upgrade?ref=badge)
 
-**DeepSeek Harness 插件升级技能——一个包、一份走廊索引、两条闭合的走廊：`0.1.3-alpha.1` → `0.1.5-rc.1`（`legAB`）与 `0.1.5-rc.2` → `0.1.6-alpha.2`（`legC`）。**
+**DeepSeek Harness 插件升级技能——一个包、一份走廊索引、三条闭合的走廊：`0.1.3-alpha.1` → `0.1.5-rc.1`（`legAB`）、`0.1.5-rc.2` → `0.1.6-alpha.2`（`legC`）与 `0.1.6-alpha.2 / 0.1.7` → `0.2.x`（`legD`）。**
 
-*扫描器自行路由：它读取目标仓库声明的 dsh 区间（或接受 `--span`），然后套用那条走廊自己的、证据绑定的目录——`legAB` 的 20 条接缝（leg A `0.1.3-alpha.1` → `0.1.5-alpha.1` 加 leg B `0.1.5-alpha.1` → `0.1.5-rc.1`）或 `legC` 的 5 条接缝（`E1`–`E5`）。只有一个入口，因此「静默停止挂载的 client 半边」永远不会被误当成「typecheck 绿了」。*
+*扫描器自行路由：它读取目标仓库声明的 dsh 区间（或接受 `--span`），然后套用那条走廊自己的、证据绑定的目录——`legAB` 的 20 条接缝（leg A `0.1.3-alpha.1` → `0.1.5-alpha.1` 加 leg B `0.1.5-alpha.1` → `0.1.5-rc.1`）、`legC` 的 5 条（`E1`–`E5`）或 `legD` 的 5 条（`D1`–`D5`；其余 0.2 项为 advisory，不扫描）。只有一个入口，因此「静默停止挂载的 client 半边」永远不会被误当成「typecheck 绿了」。*
 
 > **官方仓库。** 这是 dsh-plugin-upgrade 唯一的官方仓库，由 PerryLink 维护。它取代两个已退役的版本锁定包 `dsh-plugin-upgrade`（leg A）与 `dsh-plugin-upgrade-rc1`（leg B），并且 `0.1.5-rc.2` → `0.1.6-alpha.2` 走廊（leg C）就是并入本包的——`dsh-plugin-upgrade-016` 这个名字从未上过 registry。其他账号下的同名仓库与本项目无关。 **`dsh-plugin-upgrade-015` 与 `dsh-plugin-upgrade-016` 均已于 2026-10-05 退役，不再接受修复、发版或安全更新**；所有插件升级一律在本包继续，走廊由目标仓库自己声明的版本决定，因此不再需要「每个宿主跳跃一个版本锁定包」。
 
@@ -48,7 +48,7 @@ dsh plugin --profile <name> add dsh-plugin-upgrade
 
 DeepSeek Harness 插件升级技能——一个包、一份走廊索引、两条闭合的走廊：`0.1.3-alpha.1` → `0.1.5-rc.1`（`legAB`）与 `0.1.5-rc.2` → `0.1.6-alpha.2`（`legC`）。
 
-扫描器自行路由：它读取目标仓库声明的 dsh 区间（或接受 `--span`），然后套用那条走廊自己的、证据绑定的目录——`legAB` 的 20 条接缝（leg A `0.1.3-alpha.1` → `0.1.5-alpha.1` 加 leg B `0.1.5-alpha.1` → `0.1.5-rc.1`）或 `legC` 的 5 条接缝（`E1`–`E5`）。只有一个入口，因此「静默停止挂载的 client 半边」永远不会被误当成「typecheck 绿了」。
+扫描器自行路由：它读取目标仓库声明的 dsh 区间（或接受 `--span`），然后套用那条走廊自己的、证据绑定的目录——`legAB` 的 20 条接缝（leg A `0.1.3-alpha.1` → `0.1.5-alpha.1` 加 leg B `0.1.5-alpha.1` → `0.1.5-rc.1`）、`legC` 的 5 条（`E1`–`E5`）或 `legD` 的 5 条（`D1`–`D5`；其余 0.2 项为 advisory，不扫描）。只有一个入口，因此「静默停止挂载的 client 半边」永远不会被误当成「typecheck 绿了」。
 
 ![dsh-plugin-upgrade 工作流图：调用 → 插件 → 结果。](docs/assets/dsh-plugin-upgrade-flow.svg)
 
@@ -67,12 +67,12 @@ DeepSeek Harness 插件升级技能——一个包、一份走廊索引、两条
 
 | 面 | 状态 |
 |---|---|
-| 宿主 | DeepSeek Harness `dsh-v0.2.1-alpha.1`（当前线；dev/test 钉号 `0.2.1-alpha.1`）。走廊索引与它所度量的跨度绑定：`legAB` = `0.1.3-alpha.1 → 0.1.5-rc.1`（tag `dsh-v0.1.7-alpha.2` = `183f08e9c6dd`；leg A→B 交接点 `dsh-v0.1.7-alpha.2` = `5dda764ed3aa`），`legC` = `0.1.5-rc.2 → 0.1.6-alpha.2`（tag `dsh-v0.1.7-alpha.2`）。peer 区间 `@deepseek-ai/dsh-skill >=0.1.6-0 <0.2.0 \|\| >=0.2.0-0 <0.3.0 \|\| >=0.2.1-0 <0.3.0`、`@deepseek-ai/cordis ^4.0.5-alpha.1`、`@deepseek-ai/schemastery ^3.18.5-alpha.1`。 |
+| 宿主 | DeepSeek Harness `dsh-v0.2.1-alpha.1`（当前线；dev/test 钉号 `0.2.1-alpha.1`）。走廊索引与它所度量的跨度绑定：`legAB` = `0.1.3-alpha.1 → 0.1.5-rc.1`（tag `dsh-v0.1.7-alpha.2` = `183f08e9c6dd`；leg A→B 交接点 `dsh-v0.1.7-alpha.2` = `5dda764ed3aa`），`legC` = `0.1.5-rc.2 → 0.1.6-alpha.2`（tag `dsh-v0.1.6-alpha.2`），`legD` = `0.1.6-alpha.2 / 0.1.7 → 0.2.x`（`0.2.2-alpha.2` checkout）。peer 区间 `@deepseek-ai/dsh-skill >=0.1.6-0 <0.2.0 \|\| >=0.2.0-0 <0.3.0 \|\| >=0.2.1-0 <0.3.0`、`@deepseek-ai/cordis ^4.0.5-alpha.1`、`@deepseek-ai/schemastery ^3.18.5-alpha.1`。 |
 | Node | `^22.19.0 \|\| >=24.0.0` |
 | 平台 | 有 Node 即可；扫描器只读文件系统，与平台无关 |
 | 模型 | 纯文本模型完全支持；技能就是一段 Markdown，不要求工具或视觉能力 |
-| 走廊索引 | 一个包、一个入口。`lib/route.mjs` 持有全部闭合走廊，CLI 根据目标仓库声明的区间（`engines.dsh`、`@deepseek-ai/dsh*` 各范围）路由到匹配的那一条；`--span legAB\|legC` 可覆盖猜测，未声明区间时回退到较旧的走廊。两份目录从不合并：每条走廊保留自己的接缝数组、卡片、证据、夹具与一致性门禁。 |
-| 范围 | **两条闭合的走廊**：`legAB` = `0.1.3-alpha.1` → `0.1.5-rc.1`（leg A + leg B），`legC` = `0.1.5-rc.2` → `0.1.6-alpha.2`。走廊永不加宽：新增接缝的一跳就是一条新走廊——一张新卡加一行新索引，而不是一个新包。 |
+| 走廊索引 | 一个包、一个入口。`lib/route.mjs` 持有全部闭合走廊，CLI 根据目标仓库声明的区间（`engines.dsh`、`@deepseek-ai/dsh*` 各范围）路由到匹配的那一条；`--span legAB\|legC\|legD` 可覆盖猜测，未声明区间时回退到最旧的走廊。三份目录从不合并：每条走廊保留自己的接缝数组、卡片、证据、夹具与一致性门禁。 |
+| 范围 | **三条闭合的走廊**：`legAB` = `0.1.3-alpha.1` → `0.1.5-rc.1`（leg A + leg B），`legC` = `0.1.5-rc.2` → `0.1.6-alpha.2`，`legD` = `0.1.6-alpha.2 / 0.1.7` → `0.2.x`（5 条扫描接缝 + advisory 节）。走廊永不加宽：新增接缝的一跳就是一条新走廊——一张新卡加一行新索引，而不是一个新包。 |
 | Legs | 每条 leg 都在本包内：leg A 保留 `S1`–`S10` + `M1` 接缝，leg B 保留 `C1`、`C2`、`C4`、`C5`、`H1`–`H4`、`P1`，leg C 保留 `E1`–`E5`——各自带有自己的证据、卡片章节、夹具与回滚路径。没有需要另装的姊妹包。 |
 | `C3` | 已弃用：leg B 的卡把「类型线陈旧导致的假绿」写作 `C3`，而这与 leg A 的 `M1` 是同一个缺陷。合并一事记录在卡上；`--seams C3` 匹配不到任何东西。 |
 | 前身包 | 请勿在同一个 profile 中同时挂载已退役的 `dsh-plugin-upgrade`：两者都会注册 agent skill `plugin-upgrade`，第二次挂载会因 skill 名冲突而失败。该包在 npm 上已标记 deprecated、其仓库已退役；本包已取代它的两条腿。 |
@@ -82,7 +82,7 @@ DeepSeek Harness 插件升级技能——一个包、一份走廊索引、两条
 两半，每条走廊一套接缝目录：
 
 - **一个随包发布的 agent 技能（`plugin-upgrade`）** —— 合并后的走廊卡，以及「修-验」循环。正文先把调用者路由到与它 peer 区间相符的那条 leg；只有任务真正需要时模型才会加载它，本包不贡献任何系统提示词段落，也不注册工具。
-- **一个零依赖 CLI（`dsh-plugin-upgrade-scan`）** —— 解析出走廊，并按 `file:line` 报告那条走廊接缝的事实：`legAB` 的二十条（`S3`、`S8`、`S9`、`M1`、`S4`、`S5`、`S6`、`S7`、`S2`、`S1`、`S10`、`C1`、`C2`、`P1`、`C4`、`C5`、`H1`、`H2`、`H4`、`H3`）于 2026-09-09（leg A）与 2026-09-10（leg B）从 harness 的 tag 区间重新读取，或 `legC` 的五条（`E1`–`E5`）在 `dsh-v0.1.7-alpha.1` 上测得（2026-09-19）。命中 error 级即退出码 `1`，可直接接进 CI。
+- **一个零依赖 CLI（`dsh-plugin-upgrade-scan`）** —— 解析出走廊，并按 `file:line` 报告那条走廊接缝的事实：`legAB` 的二十条（`S3`、`S8`、`S9`、`M1`、`S4`、`S5`、`S6`、`S7`、`S2`、`S1`、`S10`、`C1`、`C2`、`P1`、`C4`、`C5`、`H1`、`H2`、`H4`、`H3`）于 2026-09-09（leg A）与 2026-09-10（leg B）从 harness 的 tag 区间重新读取，、`legC` 的五条（`E1`–`E5`）在 `dsh-v0.1.6-alpha.2` 上测得（2026-09-19），或 `legD` 的五条（`D1`–`D5`）于 2026-11-01 在 `0.2.2-alpha.2` checkout（`ce7073d512`）与指南 `0.2.1-alpha.2` 基线上重新读取。命中 error 级即退出码 `1`，可直接接进 CI。
 
 它要消灭的失效模式是：**这一跨度的破坏大多是静默的，而且两端都静默。** 类型线可能陈旧，于是仓库是对着**旧目录**编译的（接缝 `M1`）；而裸 `conversation` client slot 被删除且没有别名，`ctx.slots.inject()` 又只在 declaration 存在时才执行回调——于是仍然指向它的 client 半边停止挂载，没有报错、没有日志、构建也不会失败（接缝 `C1`）。有三类破坏能穿过 `typecheck` + `test`：
 
@@ -197,13 +197,13 @@ repo not found: /nonexistent-upgrade-repo
 **CLI** —— `dsh-plugin-upgrade-scan`：
 
 ```sh
-dsh-plugin-upgrade-scan [--repo <path>] [--span legAB|legC|<span>] [--json <out.json>] [--seams S3,C1,P1] [--quiet]
+dsh-plugin-upgrade-scan [--repo <path>] [--span legAB|legC|legD|<span>] [--json <out.json>] [--seams S3,C1,P1] [--quiet]
 ```
 
 | 参数 | 含义 |
 |---|---|
 | `--repo <path>` | 要扫描的仓库（默认当前目录）。它声明的 dsh 区间决定走哪条走廊。 |
-| `--span legAB\|legC\|<span>` | 不再根据声明的区间猜测，而是强制指定走廊。未知区间回退到 `legAB`。 |
+| `--span legAB\|legC\|legD\|<span>` | 不再根据声明的区间猜测，而是强制指定走廊。未知区间回退到 `legAB`。 |
 | `--json <out.json>` | 同时写出机器可读报告（`repo`、`scannedAt`、`files`、`hits[]`、`bySeam`）。 |
 | `--seams S3,C1,P1` | 只跑解析出的那条走廊目录中的指定接缝（接缝 id 从不在走廊之间共享）。 |
 | `--quiet` | 不打印人类可读渲染（与 `--json` 搭配）。 |

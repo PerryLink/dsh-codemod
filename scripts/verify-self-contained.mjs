@@ -56,6 +56,9 @@ for (const file of walk(root)) {
 for (const required of [
   'skills/plugin-upgrade/SKILL.md',
   'skills/plugin-upgrade/references/v0.1.3-alpha.1-to-v0.1.5-rc.1.md',
+  'skills/plugin-upgrade/references/v0.1.5-rc.2-to-v0.1.6-alpha.2.md',
+  'skills/plugin-upgrade/references/v0.1.6-alpha.2-to-v0.2.x.md',
+  'lib/scan-0.2.mjs',
   'cordis.patch.yml',
 ]) {
   if (!existsSync(join(root, required))) problems.push(`missing packaged asset: ${required}`)

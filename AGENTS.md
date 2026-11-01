@@ -24,8 +24,15 @@ cards (`skills/plugin-upgrade/references/v0.1.3-alpha.1-to-v0.1.5-rc.1.md` and
     `lib/scan-0.1.6.mjs`, card `…/references/v0.1.5-rc.2-to-v0.1.6-alpha.2.md`, evidence
     `docs/EVIDENCE.md` §11. The retired `dsh-plugin-upgrade-016` name never reached the
     registry; this corridor is folded in here.
-- **The seam arrays are never merged.** Two corridors mean two catalogs, two cards and two
-  parity gates, so every card claim stays traceable to its own measurement. What the
+  - **`legD`** — `0.1.6-alpha.2 / 0.1.7 → 0.2.x`: 5 scanned seams (`D1`–`D5`, all
+    `error`), catalog `lib/scan-0.2.mjs`, card
+    `…/references/v0.1.6-alpha.2-to-v0.2.x.md`, evidence `docs/EVIDENCE.md` §12. The
+    card's **advisory (not scanned)** section owns the 0.2 seams the catalog deliberately
+    does not detect (V4 session logs, `{kind:'plugin'}` sources, composition rows,
+    `dsh.client.inject` shape, `stats` → `activity`/`usage`, `mode: 'both'`, `L1`–`L19`);
+    those are not `CARD_ONLY` seams and must never be added to `SEAMS` without a fixture.
+- **The seam arrays are never merged.** Three corridors mean three catalogs, three cards and
+  three parity gates, so every card claim stays traceable to its own measurement. What the
   corridors *do* share is the entry point: one skill id (`plugin-upgrade`), one CLI
   (`dsh-plugin-upgrade-scan`), one report shape.
 - **This supersedes the family's earlier rule.** The retired `dsh-plugin-upgrade`,
@@ -76,13 +83,14 @@ Consequences accepted by this repository:
 index.mjs             single host face: Config schema + skill bundle reader + apply()
 types.d.ts            Config, SeamId, SeamHit, ScanReport and the public function surface
 lib/route.mjs         the corridor index: CORRIDORS, declaredBand(), resolveCorridor(),
-                      --span/--repo parsing, loadCatalog()
+                      --span/--repo parsing, loadCatalog(), CORRIDOR_CEILING
 lib/scan.mjs          zero-dependency `legAB` seam catalog (legs A+B) + scanner + CLI main()
 lib/scan-0.1.6.mjs    zero-dependency `legC` seam catalog (E1–E5) + scanner + CLI main()
+lib/scan-0.2.mjs      zero-dependency `legD` seam catalog (D1–D5) + scanner + CLI main()
 scripts/scan-0.1.5.mjs   thin bin wrapper (npx dsh-plugin-upgrade-scan): resolves the
-                         corridor through lib/route.mjs and hands the same argv to that
-                         corridor's catalog main(). The filename is historical; the wrapper
-                         routes both corridors
+                         corridor through lib/route.mjs and hands the same argv (minus
+                         --span) to that corridor's catalog main(). The filename is
+                         historical; the wrapper routes all three corridors
 skills/plugin-upgrade/scripts/scan-0.1.5.mjs  the same wrapper inside the skill
                       directory, so the skill body's `./scripts/...` resolves against its
                       resourceBase
@@ -101,7 +109,7 @@ skills/plugin-upgrade/references/v0.1.5-rc.2-to-v0.1.6-alpha.2.md  the `legC` ca
                                     the 5-seam `E1`–`E5` index and the fix/verify recipes
 test/scan.test.mjs    synthetic bad/good fixtures for BOTH legs + --seams + a live negative
 test/plugin.test.mjs  real Cordis Context + real SkillRegistry: register, dispose, negatives
-test/card.test.mjs    the card↔catalog id/severity parity gate for BOTH corridors
+test/card.test.mjs    the card↔catalog id/severity parity gate for ALL THREE corridors
 fixtures/             scanner fixtures — never published:
                         bad-repo / good-repo            leg B (client-slot oriented)
                         leg-a-bad-repo / leg-a-good-repo  leg A (TypeScript/session oriented)

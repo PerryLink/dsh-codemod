@@ -2,15 +2,15 @@
 
 # ⬆️ dsh-plugin-upgrade
 
-> **Escopo: os corredores terminam em `0.1.6-alpha.2`.** Não há corredor `0.1.6 → 0.2.x`; o pacote ainda pode ser instalado em hosts 0.2.x para escanear repositórios antigos, mas não é um caminho de migração para 0.2.x. Para atualizações rotineiras do bundle, use o `updateBundle()` nativo do gerenciador de plugins do host.
+> **Escopo: três corredores fechados, até `0.2.x`.** `legAB` = `0.1.3-alpha.1` → `0.1.5-rc.1`, `legC` = `0.1.5-rc.2` → `0.1.6-alpha.2`, `legD` = `0.1.6-alpha.2 / 0.1.7` → `0.2.x` (medido no checkout `0.2.2-alpha.2` e na base `0.2.1-alpha.2` do guia). `legD` escaneia cinco costuras (`D1`–`D5`); o restante das mudanças 0.2 está em **advisory (not scanned)** — um scan limpo não certifica compatibilidade com 0.2. Para atualizações rotineiras do bundle, use o `updateBundle()` nativo do gerenciador de plugins do host.
 
 - **Canal da loja 1024**: rode `npm i -g dsh1024` uma vez e depois `dsh1024 plugin --profile web add dsh-plugin-upgrade` (conta para o ranking de instalações do [deepseek1024.com](https://deepseek1024.com)).
 [![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/dsh-plugin-upgrade)
 [![dshfind](https://dshfind.com/api/badge/PerryLink/dsh-plugin-upgrade?metric=downloads&lang=pt)](https://dshfind.com/pt/plugins/PerryLink/dsh-plugin-upgrade?ref=badge)
 
-**Habilidade de atualização de plugins para o DeepSeek Harness — um pacote, um índice de corredores, dois corredores fechados: `0.1.3-alpha.1` → `0.1.5-rc.1` (`legAB`) e `0.1.5-rc.2` → `0.1.6-alpha.2` (`legC`).**
+**Habilidade de atualização de plugins para o DeepSeek Harness — um pacote, um índice de corredores, três corredores fechados: `0.1.3-alpha.1` → `0.1.5-rc.1` (`legAB`), `0.1.5-rc.2` → `0.1.6-alpha.2` (`legC`) e `0.1.6-alpha.2 / 0.1.7` → `0.2.x` (`legD`).**
 
-*O scanner se encaminha sozinho: lê a faixa dsh declarada pelo repositório alvo (ou aceita `--span`) e então aplica o catálogo próprio daquele corredor, vinculado a evidências — as 20 costuras do `legAB` (perna A `0.1.3-alpha.1` → `0.1.5-alpha.1` mais perna B `0.1.5-alpha.1` → `0.1.5-rc.1`) ou as 5 costuras do `legC` (`E1`–`E5`). Um único ponto de entrada, para que uma metade de cliente que parou de montar em silêncio nunca seja confundida com «typecheck verde».*
+*O scanner se encaminha sozinho: lê a faixa dsh declarada pelo repositório alvo (ou aceita `--span`) e então aplica o catálogo próprio daquele corredor, vinculado a evidências — as 20 costuras do `legAB` (perna A `0.1.3-alpha.1` → `0.1.5-alpha.1` mais perna B `0.1.5-alpha.1` → `0.1.5-rc.1`) as 5 costuras do `legC` (`E1`–`E5`), ou as 5 do `legD` (`D1`–`D5`; o restante de 0.2 é advisory e não é escaneado). Um único ponto de entrada, para que uma metade de cliente que parou de montar em silêncio nunca seja confundida com «typecheck verde».*
 
 > **Repositório oficial.** Este é o único repositório oficial de dsh-plugin-upgrade, mantido pela PerryLink. Ele substitui os dois pacotes retirados com versão travada `dsh-plugin-upgrade` (perna A) e `dsh-plugin-upgrade-rc1` (perna B), e é o pacote no qual o corredor `0.1.5-rc.2` → `0.1.6-alpha.2` (perna C) foi incorporado — o nome `dsh-plugin-upgrade-016` nunca chegou ao registro. Repositórios com o mesmo nome em outras contas não são afiliados. **Tanto `dsh-plugin-upgrade-015` quanto `dsh-plugin-upgrade-016` foram retirados em 2026-10-05 e não recebem mais correções, versões nem atualizações de segurança**; toda atualização de plugins continua aqui, e o corredor é decidido pela versão que o próprio repositório de destino declara, portanto não é mais necessário um pacote com versão travada por salto do host.
 
@@ -59,7 +59,7 @@ Este plugin faz parte da [família de plugins DSH](https://github.com/PerryLink)
 
 Habilidade de atualização de plugins para o DeepSeek Harness — um pacote, um índice de corredores, dois corredores fechados: `0.1.3-alpha.1` → `0.1.5-rc.1` (`legAB`) e `0.1.5-rc.2` → `0.1.6-alpha.2` (`legC`).
 
-O scanner se encaminha sozinho: lê a faixa dsh declarada pelo repositório alvo (ou aceita `--span`) e então aplica o catálogo próprio daquele corredor, vinculado a evidências — as 20 costuras do `legAB` (perna A `0.1.3-alpha.1` → `0.1.5-alpha.1` mais perna B `0.1.5-alpha.1` → `0.1.5-rc.1`) ou as 5 costuras do `legC` (`E1`–`E5`). Um único ponto de entrada, para que uma metade de cliente que parou de montar em silêncio nunca seja confundida com «typecheck verde».
+O scanner se encaminha sozinho: lê a faixa dsh declarada pelo repositório alvo (ou aceita `--span`) e então aplica o catálogo próprio daquele corredor, vinculado a evidências — as 20 costuras do `legAB` (perna A `0.1.3-alpha.1` → `0.1.5-alpha.1` mais perna B `0.1.5-alpha.1` → `0.1.5-rc.1`) as 5 costuras do `legC` (`E1`–`E5`), ou as 5 do `legD` (`D1`–`D5`; o restante de 0.2 é advisory e não é escaneado). Um único ponto de entrada, para que uma metade de cliente que parou de montar em silêncio nunca seja confundida com «typecheck verde».
 
 ![Diagrama de fluxo de dsh-plugin-upgrade: chamada → plugin → resultado.](docs/assets/dsh-plugin-upgrade-flow.svg)
 
@@ -78,12 +78,12 @@ O scanner se encaminha sozinho: lê a faixa dsh declarada pelo repositório alvo
 
 | Superfície | Estado |
 |---|---|
-| Harness | DeepSeek Harness `dsh-v0.2.1-alpha.1` (linha atual; pins de dev/test `0.2.1-alpha.1`). O índice de corredores está vinculado à evidência dos trechos que mediu: `legAB` = `0.1.3-alpha.1 → 0.1.5-rc.1` (tag `dsh-v0.1.7-alpha.2` = `183f08e9c6dd`; passagem da perna A→B `dsh-v0.1.7-alpha.2` = `5dda764ed3aa`) e `legC` = `0.1.5-rc.2 → 0.1.6-alpha.2` (tag `dsh-v0.1.7-alpha.2`). Faixa de peers `@deepseek-ai/dsh-skill >=0.1.6-0 <0.2.0 \|\| >=0.2.0-0 <0.3.0 \|\| >=0.2.1-0 <0.3.0`, `@deepseek-ai/cordis ^4.0.5-alpha.1`, `@deepseek-ai/schemastery ^3.18.5-alpha.1`. |
+| Harness | DeepSeek Harness `dsh-v0.2.1-alpha.1` (linha atual; pins de dev/test `0.2.1-alpha.1`). O índice de corredores está vinculado à evidência dos trechos que mediu: `legAB` = `0.1.3-alpha.1 → 0.1.5-rc.1` (tag `dsh-v0.1.7-alpha.2` = `183f08e9c6dd`; passagem da perna A→B `dsh-v0.1.7-alpha.2` = `5dda764ed3aa`) `legC` = `0.1.5-rc.2 → 0.1.6-alpha.2` (tag `dsh-v0.1.6-alpha.2`), e `legD` = `0.1.6-alpha.2 / 0.1.7 → 0.2.x` (checkout `0.2.2-alpha.2`). Faixa de peers `@deepseek-ai/dsh-skill >=0.1.6-0 <0.2.0 \|\| >=0.2.0-0 <0.3.0 \|\| >=0.2.1-0 <0.3.0`, `@deepseek-ai/cordis ^4.0.5-alpha.1`, `@deepseek-ai/schemastery ^3.18.5-alpha.1`. |
 | Node | `^22.19.0 \|\| >=24.0.0` |
 | Plataformas | Onde o Node rodar; o scanner só usa o sistema de arquivos e é neutro em relação à plataforma |
 | Modelo | Modelos somente texto totalmente suportados; a habilidade é um Markdown, sem exigência de ferramentas ou visão |
-| Índice de corredores | Um pacote, um ponto de entrada. `lib/route.mjs` guarda os corredores fechados e a CLI encaminha para o correspondente a partir da faixa declarada do repositório alvo (`engines.dsh`, os intervalos `@deepseek-ai/dsh*`); `--span legAB\|legC` substitui o palpite e uma faixa não declarada recai no corredor mais antigo. Os dois catálogos nunca são fundidos: cada corredor mantém seu próprio array de costuras, cartão, evidências, fixtures e portão de paridade. |
-| Escopo | **Dois corredores fechados**: `legAB` = `0.1.3-alpha.1` → `0.1.5-rc.1` (perna A + perna B), `legC` = `0.1.5-rc.2` → `0.1.6-alpha.2`. Um corredor nunca se alarga: um salto que acrescenta uma costura é um corredor novo — um cartão novo e uma linha nova no índice, não um pacote novo. |
+| Índice de corredores | Um pacote, um ponto de entrada. `lib/route.mjs` guarda os corredores fechados e a CLI encaminha para o correspondente a partir da faixa declarada do repositório alvo (`engines.dsh`, os intervalos `@deepseek-ai/dsh*`); `--span legAB\|legC\|legD` substitui o palpite e uma faixa não declarada recai no corredor mais antigo. Os três catálogos nunca são fundidos: cada corredor mantém seu próprio array de costuras, cartão, evidências, fixtures e portão de paridade. |
+| Escopo | **Três corredores fechados**: `legAB` = `0.1.3-alpha.1` → `0.1.5-rc.1` (perna A + perna B), `legC` = `0.1.5-rc.2` → `0.1.6-alpha.2`, `legD` = `0.1.6-alpha.2 / 0.1.7` → `0.2.x` (5 costuras escaneadas + seção advisory). Um corredor nunca se alarga: um salto que acrescenta uma costura é um corredor novo — um cartão novo e uma linha nova no índice, não um pacote novo. |
 | Pernas | Cada perna vive neste pacote: a perna A mantém as costuras `S1`–`S10` + `M1`, a perna B mantém `C1`, `C2`, `C4`, `C5`, `H1`–`H4`, `P1`, e a perna C mantém `E1`–`E5` — cada uma com suas próprias evidências, seção de cartão, fixtures e caminho de rollback. Não há pacote irmão a instalar. |
 | `C3` | Aposentada: o cartão da perna B chamava de `C3` o verde falso da linha de tipos desatualizada, que é o mesmo defeito da `M1` da perna A. A fusão está registrada no cartão; `--seams C3` não corresponde a nada. |
 | Pacote anterior | Não monte o retirado `dsh-plugin-upgrade` no mesmo perfil: os dois registram a skill `plugin-upgrade`, então a segunda montagem colide nesse nome. Aquele pacote está obsoleto no npm e seu repositório foi retirado; este pacote substitui as suas duas pernas. |
@@ -93,7 +93,7 @@ O scanner se encaminha sozinho: lê a faixa dsh declarada pelo repositório alvo
 Duas metades, um catálogo de costuras por corredor:
 
 - **Uma habilidade de agente empacotada (`plugin-upgrade`)** — o cartão do corredor fundido e um ciclo de corrigir-e-verificar. O corpo primeiro encaminha quem chama para a perna que corresponde à sua faixa de peers; o modelo só a carrega quando uma tarefa realmente precisa dela, e o pacote não contribui com nenhum parágrafo de prompt de sistema nem com nenhuma ferramenta.
-- **Uma CLI sem dependências (`dsh-plugin-upgrade-scan`)** — resolve o corredor e reporta fatos `file:line` das costuras daquele corredor: as vinte do `legAB` (`S3`, `S8`, `S9`, `M1`, `S4`, `S5`, `S6`, `S7`, `S2`, `S1`, `S10`, `C1`, `C2`, `P1`, `C4`, `C5`, `H1`, `H2`, `H4`, `H3`) relidas dos intervalos de tags do harness em 2026-09-09 (perna A) e 2026-09-10 (perna B), ou as cinco do `legC` (`E1`–`E5`) medidas no `dsh-v0.1.7-alpha.1` (2026-09-19). Sai com `1` em qualquer achado de severidade error, então entra direto no CI.
+- **Uma CLI sem dependências (`dsh-plugin-upgrade-scan`)** — resolve o corredor e reporta fatos `file:line` das costuras daquele corredor: as vinte do `legAB` (`S3`, `S8`, `S9`, `M1`, `S4`, `S5`, `S6`, `S7`, `S2`, `S1`, `S10`, `C1`, `C2`, `P1`, `C4`, `C5`, `H1`, `H2`, `H4`, `H3`) relidas dos intervalos de tags do harness em 2026-09-09 (perna A) e 2026-09-10 (perna B), as cinco do `legC` (`E1`–`E5`) medidas no `dsh-v0.1.6-alpha.2` (2026-09-19), ou as cinco do `legD` (`D1`–`D5`) relidas em 2026-11-01 no checkout `0.2.2-alpha.2` (`ce7073d512`) e na base `0.2.1-alpha.2` do guia. Sai com `1` em qualquer achado de severidade error, então entra direto no CI.
 
 O objetivo é o modo de falha que este corredor existe para matar: **a quebra deste intervalo é em grande parte silenciosa, pelas duas pontas.** A linha de tipos pode estar desatualizada, então o repositório compila contra o **catálogo antigo** (costura `M1`), e o slot de cliente puro `conversation` foi removido sem alias enquanto `ctx.slots.inject()` só executa o callback quando a declaração existe — então uma metade de cliente que ainda aponta para ele para de montar sem erro, sem linha de log e sem build quebrado (costura `C1`). Três classes de quebra sobrevivem a `typecheck` + `test`:
 
@@ -198,13 +198,13 @@ O plugin monta de forma ruidosa: um `SKILL.md` ausente, um corpo vazio ou um fro
 **CLI** — `dsh-plugin-upgrade-scan`:
 
 ```sh
-dsh-plugin-upgrade-scan [--repo <path>] [--span legAB|legC|<span>] [--json <out.json>] [--seams S3,C1,P1] [--quiet]
+dsh-plugin-upgrade-scan [--repo <path>] [--span legAB|legC|legD|<span>] [--json <out.json>] [--seams S3,C1,P1] [--quiet]
 ```
 
 | Flag | Significado |
 |---|---|
 | `--repo <path>` | Repositório a escanear (padrão: diretório atual). Sua faixa dsh declarada escolhe o corredor. |
-| `--span legAB\|legC\|<span>` | Força um corredor em vez de adivinhar pela faixa declarada. Uma faixa desconhecida recai no `legAB`. |
+| `--span legAB\|legC\|legD\|<span>` | Força um corredor em vez de adivinhar pela faixa declarada. Uma faixa desconhecida recai no `legAB`. |
 | `--json <out.json>` | Também grava o relatório legível por máquina (`repo`, `scannedAt`, `files`, `hits[]`, `bySeam`). |
 | `--seams S3,C1,P1` | Restringe a costuras específicas do catálogo do corredor resolvido (os ids nunca são compartilhados entre corredores). |
 | `--quiet` | Suprime a renderização humana (combine com `--json`). |

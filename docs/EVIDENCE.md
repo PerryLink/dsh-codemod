@@ -421,3 +421,128 @@ ddefc45:packages/client/ui-model-selection/src/client/index.ts:52:  'deepseek-of
 - 事件词表 58（+`workspace/changes`）、槽表 70 键、默认模型目录 2 条：`[A01]` §3 核实。
 - peer canonical 三段式：`dsh-plugin-kit/data/peer-range.json`（W0 0-K 合入，tripwire exit 0 已实测）。
 - 未验证项（诚实）：0.1.6 走廊卡在真实 45 仓上的全量扫描回归（等 W1 修复落地后跑）；本包真宿主冒烟（首次 publish 前执行）。
+
+---
+
+## Section 12 - leg D (0.1.6-alpha.2 / 0.1.7 -> 0.2.x)
+
+> Re-read **2026-11-01** for the `legD` corridor. Host checkout: `/home/yy/deepseek-harness`
+> at `ce7073d51254c26cd63b22a60835b8f948deb447` (root `package.json` version
+> `0.2.2-alpha.2`). Migration guide: `/tmp/pl-work/dsh-plugin-guide/guide/migration-0.2.md`,
+> baseline `d743267388641bc76f17c45ce8b4c231aed1d32c` (tag `dsh-v0.2.1-alpha.2`).
+> Marking discipline: the five catalog seams (`D1`–`D5`) are machine-detected; the items at
+> the end of this section are **evidence only, never scanned** (they are the card's advisory
+> section, not `SEAMS` entries).
+
+### D1 - the peer band is enforced at install/restart
+
+```console
+$ node -p "require('./package.json').version"          # in /home/yy/deepseek-harness
+0.2.2-alpha.2
+$ sed -n '55,75p' packages/boot/app-boot/src/plugin-compatibility.ts
+function unmetRequirements(fields: Record<string, unknown>, runtimeVersion: string): Record<string, string> {
+  const engines = Object.hasOwn(fields, 'engines') ? objectOf(fields.engines, 'Plugin manifest engines') : {}
+  if (Object.hasOwn(engines, 'dsh')) {
+    const range = engines.dsh
+    if (typeof range !== 'string') throw new Error('Plugin manifest engines.dsh must be a string')
+    return satisfies(runtimeVersion, range) ? {} : { 'engines.dsh': range }
+  }
+  ...
+  for (const [name, range] of Object.entries(dependencies)) {
+    if (name !== '@deepseek-ai/dsh' && !name.startsWith('@deepseek-ai/dsh-')) continue
+    ...
+    if (!satisfies(runtimeVersion, requirement)) unmet[name] = range
+```
+
+断言：`engines.dsh` 存在时**独占**（peer 被忽略），否则每个 `@deepseek-ai/dsh*` peer 都对照运行时版本；
+`satisfies` 使用 `{ includePrerelease: true }`（`:52`）。调用点：`packages/boot/plugin-manager/src/operations.ts:356`
+（安装前）、`:493`（更新）、`:680`（版本替换）。指南：`migration-0.2.md:36`（peer 范围会被安装期强制）、`:209`
+（每条线一个 clause，禁止跨代开区间）。
+
+本走廊的检测器：`lib/scan-0.2.mjs` `checkPeerBand()` + `excludes02()`；bad fixture
+`fixtures/leg-d-bad-repo/package.json` 声明 `>=0.1.6-0 <0.2.0`，good fixture 声明
+`>=0.1.6-0 <0.2.0 || >=0.2.1-0 <0.3.0`。测试矩阵见 `test/scan-0.2.test.mjs` 的
+`D1 is structured` 用例（含 `engines.dsh` 优先级与 `workspace:` 豁免）。
+
+### D2 - the settings surface was rewritten
+
+```console
+$ grep -rn "SettingsScope" --include=*.ts packages | wc -l
+0
+$ grep -n "export class SettingsForms" packages/settings/settings/src/index.ts
+223:export class SettingsForms extends Service {
+$ grep -rn "settings\.register\|installSection" --include=*.ts packages | wc -l
+0
+```
+
+指南：`migration-0.2.md:60`（`settings-file` 整体删除）、`:62-71`（旧→新表：`register`/`installSection`/
+`SettingsScope`/`SettingsRegisterOptions`/`applies` 删除，客户端 `settingsScope` 删除）。
+
+### D3 - invariants were deleted, not deprecated
+
+```console
+$ ls packages/runtime-diagnostics
+ls: cannot access 'packages/runtime-diagnostics': No such file or directory
+$ grep -rn "ctx.invariants\|InvariantRegistry" --include=*.ts packages | wc -l
+0
+```
+
+指南：`migration-0.2.md:80-85`；`docs/subsystems/invariants.md` 是区间内唯一被删除的官方文档。
+
+### D4 - the header slot was removed
+
+```console
+$ grep -rn "conversation.session.header.leading" --include=*.ts packages | wc -l
+0
+$ grep -n "conversation.header.leading" packages/client/ui-conversation/src/client/contract/slots.ts | head -2
+259:    'conversation.header.leading': {
+636:  & PropsRenderSlots<'conversation.header.leading' | 'conversation.session.header'>
+```
+
+指南：`migration-0.2.md:118`（删除 `conversation.session.header.leading`，位置由
+`conversation.header.leading` 接管）。失效机制与 legC 的 E3 同源：`ctx.slots.inject()` 只在声明存在时执行回调。
+
+### D5 - the workspace-files Remote was renamed
+
+```console
+$ sed -n '21,26p' packages/api/workspace-files/lib/typert.remote-client.d.ts
+    'workspaceFiles/changes': (workspaceFileScopeId: SessionId, path: string, signal?: AbortSignal) => RemoteStreamHandle<WorkspaceFileWatchFrame, never>
+    'workspaceFiles/list': (workspaceFileScopeId: SessionId, path: string, signal?: AbortSignal) => Promise<RemoteResult<WorkspaceDirectoryListing>>
+    'workspaceFiles/read': (workspaceFileScopeId: SessionId, path: string, range: WorkspaceFileRange, signal?: AbortSignal) => Promise<RemoteResult<WorkspaceFileText>>
+    'workspaceFiles/readBytes': (workspaceFileScopeId: SessionId, path: string, options: WorkspaceByteReadOptions, signal?: AbortSignal) => Promise<RemoteResult<RemoteDecoded<WorkspaceFileBytes>>>
+    'workspaceFiles/stat': (workspaceFileScopeId: SessionId, path: string, signal?: AbortSignal) => Promise<RemoteResult<WorkspaceFileStat>>
+```
+
+断言：`changes` 现在带 `path`；`readBytes` 存在；`readAll`/`readRelated` 不再是 Remote 方法。
+指南：`migration-0.2.md:120-127`。
+
+### Advisory evidence (NOT scanned, NOT in `SEAMS`)
+
+这些记录支撑卡片的 advisory 节，但本走廊**没有**为它们实现检测器：
+
+- **V4 session format.** `SESSION_FORMAT_VERSION = 4` 于 `packages/core/session/src/types.ts:90`；
+  `ContentBlockMap` 已无 `tool-result`（`packages/llm/llm/src/types.ts:144-152`）；
+  `packages/core/session/src/surface.ts:204` 原文 `must omit header.system; use system/message`。
+  指南：`migration-0.2.md:38-56`。
+- **`{kind:'plugin'}` message source.** `MessageSourceMap` 只有四个内建成员
+  （`packages/llm/llm/src/message.ts:110-115`）；V4 准入在
+  `packages/session/session-format-v3-to-v4/src/message-sources.ts:9-10` 抛
+  `format v4 message requires a producer-owned source kind`。指南：`migration-0.2.md:150-163`。
+- **Deleted composition rows.** `vendor/include/src/index.ts:108-115`：非 insert patch 依赖 `id` 命中，
+  否则 `warn('patch: entry %C not found', id)`；`name` 不匹配则
+  `warn('patch: name mismatch ... skipping')`。指南：`migration-0.2.md:83`、`:97-114`。
+- **`dsh.client.inject` shape.** `Inject` 类型 = 数组或对象（`vendor/cordis/src/registry.ts:19`），
+  函数形式会解析成零依赖；清单类型 `DshClientManifest.inject?: string[]` 于
+  `packages/util/package-manifest/src/types.ts:91`。指南：`migration-0.2.md:137`。
+- **`stats` → `activity`/`usage`.** 指南：`migration-0.2.md:32`、`:135`（0.2.1-alpha.1 官方破坏项）。
+- **`mode: 'both'`.** `packages/core/agent-tool-presentation/src/index.ts:33` 的
+  `mode: 'native' | 'ptc'`；测试 `tests/agent-tool-presentation.spec.ts:67` 断言
+  `Config({ mode: 'both' })` 抛错。指南：`migration-0.2.md:229`（L2）。
+- **`L1`–`L19`.** `migration-0.2.md:212-258`；本卡不复制其语义，只引用 ID。
+
+### Not verified
+
+- 未对已发布的 npm tarball 解包核验其内容与上述 tag/checkout 逐字节一致（与指南 §14.2 同一限制）。
+- 未在真 0.2.x 宿主上跑 `dsh plugin add` 安装探针；`D1` 的代码路径已读，但安装拒绝的端到端行为未在本会话复现。
+- 未跑真浏览器断言（`D4`/`D5` 的 exit criterion 仍是人工项）。
+- 未对家族 40 仓重跑 `legD` 全量扫描，所以本卡不报告命中仓数。

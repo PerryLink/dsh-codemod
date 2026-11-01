@@ -15,6 +15,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { SEAMS, SEAM_IDS, CARD_ONLY } from '../lib/scan.mjs'
 import { SEAMS as SEAMS_C, SEAM_IDS as SEAM_IDS_C, CARD_ONLY as CARD_ONLY_C } from '../lib/scan-0.1.6.mjs'
+import { SEAMS as SEAMS_D, SEAM_IDS as SEAM_IDS_D, CARD_ONLY as CARD_ONLY_D } from '../lib/scan-0.2.mjs'
 
 const here = path.dirname(fileURLToPath(import.meta.url))
 const root = path.resolve(here, '..')
@@ -22,6 +23,8 @@ const cardPath = path.join(root, 'skills', 'plugin-upgrade', 'references', 'v0.1
 const card = readFileSync(cardPath, 'utf8')
 const cardCPath = path.join(root, 'skills', 'plugin-upgrade', 'references', 'v0.1.5-rc.2-to-v0.1.6-alpha.2.md')
 const cardC = readFileSync(cardCPath, 'utf8')
+const cardDPath = path.join(root, 'skills', 'plugin-upgrade', 'references', 'v0.1.6-alpha.2-to-v0.2.x.md')
+const cardD = readFileSync(cardDPath, 'utf8')
 
 /**
  * A card's index section, delimited by HTML comment markers. The `legAB` card
@@ -37,6 +40,7 @@ function indexSection(text, begin, end) {
 
 const section = indexSection(card, '<!-- MERGED-SEAM-INDEX:BEGIN -->', '<!-- MERGED-SEAM-INDEX:END -->')
 const sectionC = indexSection(cardC, '<!-- SEAM-INDEX:BEGIN -->', '<!-- SEAM-INDEX:END -->')
+const sectionD = indexSection(cardD, '<!-- LEGD-SEAM-INDEX:BEGIN -->', '<!-- LEGD-SEAM-INDEX:END -->')
 const rows = [...section.matchAll(/^\|\s*`([SMCHP]\d{1,2})`\s*\|\s*\*{0,2}(error|warn|info)\*{0,2}\s*\|/gmu)]
   .map(m => ({ id: m[1], severity: m[2] }))
 
@@ -158,4 +162,49 @@ test('the two corridors keep separate catalogs and never merge their seam arrays
   const overlap = SEAM_IDS.filter(id => SEAM_IDS_C.includes(id))
   assert.deepEqual(overlap, [], 'the legAB and legC catalogs must not share seam ids')
   assert.notDeepEqual(SEAM_IDS, SEAM_IDS_C)
+})
+
+
+// ---- corridor 3: `legD`. Same evidence-binding rule, its own catalog. ----
+
+test('the legD card index names exactly the legD catalog seams, in catalog order', () => {
+  assert.deepEqual(SEAM_IDS_D, ['D1', 'D2', 'D3', 'D4', 'D5'])
+  const rowsD = [...sectionD.matchAll(/^\|\s*`([D]\d{1,2})`\s*\|\s*\*{0,2}(error|warn|info)\*{0,2}\s*\|/gmu)]
+    .map(m => ({ id: m[1], severity: m[2] }))
+  assert.deepEqual(rowsD.map(r => r.id), SEAM_IDS_D)
+  assert.deepEqual(
+    rowsD.map(r => `${r.id}:${r.severity}`),
+    SEAMS_D.map(s => `${s.id}:${s.severity}`),
+  )
+})
+
+test('the legD card mints no id outside its own catalog and declares no card-only seam', () => {
+  const mentioned = new Set([...cardD.matchAll(/`(D\d{1,2})`/g)].map(m => m[1]))
+  for (const id of mentioned) {
+    assert.ok(SEAM_IDS_D.includes(id), `the legD card names ${id}, which is not in the legD catalog`)
+  }
+  for (const id of SEAM_IDS_D) assert.ok(mentioned.has(id), `the legD card never names ${id}`)
+  assert.deepEqual(CARD_ONLY_D, [], 'every legD seam has a detector')
+  assert.match(cardD, /CARD_ONLY = \[\]/)
+})
+
+test('the legD card declares its scope, its advisory section and its evidence baseline', () => {
+  assert.match(cardD, /^# 版本卡 · `0\.1\.6-alpha\.2` → `0\.2\.x`/m)
+  assert.match(cardD, /只对 \*\*`0\.1\.6-alpha\.2`（含 `0\.1\.7` 线）→ `0\.2\.x`\*\*/)
+  assert.match(cardD, /CARD_ONLY = \[\]/)
+  // The seams the corridor cannot machine-detect must be declared as such,
+  // never smuggled into the catalog.
+  assert.match(cardD, /advisory \(not scanned\)/)
+  assert.match(cardD, /V4 会话格式/)
+  assert.match(cardD, /\{kind:'plugin'\}/)
+  assert.match(cardD, /mode: 'both'/)
+  assert.match(cardD, /dsh-plugin-guide\/guide\/migration-0\.2\.md/)
+})
+
+test('the three corridors keep separate catalogs and never merge their seam arrays', () => {
+  const overlapCD = SEAM_IDS_C.filter(id => SEAM_IDS_D.includes(id))
+  const overlapABD = SEAM_IDS.filter(id => SEAM_IDS_D.includes(id))
+  assert.deepEqual(overlapCD, [], 'the legC and legD catalogs must not share seam ids')
+  assert.deepEqual(overlapABD, [], 'the legAB and legD catalogs must not share seam ids')
+  assert.notDeepEqual(SEAM_IDS_C, SEAM_IDS_D)
 })

@@ -26,10 +26,13 @@ try {
     'types.d.ts',
     'cordis.patch.yml',
     'lib/scan.mjs',
+    'lib/scan-0.2.mjs',
     'scripts/scan-0.1.5.mjs',
     'skills/plugin-upgrade/SKILL.md',
     'skills/plugin-upgrade/scripts/scan-0.1.5.mjs',
     'skills/plugin-upgrade/references/v0.1.3-alpha.1-to-v0.1.5-rc.1.md',
+    'skills/plugin-upgrade/references/v0.1.5-rc.2-to-v0.1.6-alpha.2.md',
+    'skills/plugin-upgrade/references/v0.1.6-alpha.2-to-v0.2.x.md',
     'docs/EVIDENCE.md',
     'README.md',
     'CHANGELOG.md',
@@ -61,7 +64,7 @@ try {
     failures.push(`packaged entry failed to import: ${detail.slice(0, 200)}`)
   }
 
-  // The packaged SKILL.md must keep its corridor-index frontmatter (both corridors).
+  // The packaged SKILL.md must keep its corridor-index frontmatter (all three corridors).
   const skill = readFileSync(join(pkgRoot, 'skills/plugin-upgrade/SKILL.md'), 'utf8')
   if (!/^name:\s*plugin-upgrade\s*$/m.test(skill)) failures.push('packaged SKILL.md lost its frontmatter name')
   if (!/^  corridors:\s*"legAB `0\.1\.3-alpha\.1 -> 0\.1\.5-rc\.1`/m.test(skill)) failures.push('packaged SKILL.md lost its legAB corridor frontmatter')
@@ -103,6 +106,22 @@ try {
     failures.push('packaged skill-relative scanner exited 0 on a leg-A seam (S9)')
   } catch (error) {
     if (error.status !== 1) failures.push(`packaged skill-relative scanner exited ${error.status} on the leg-A probe, expected 1`)
+  }
+
+  // A leg-D seam must fail from the tarball through the explicit span: the
+  // router consumes --span, and the legD catalog must still see a clean argv.
+  const legDProbe = join(staging, 'leg-d-probe')
+  mkdirSync(legDProbe, { recursive: true })
+  writeFileSync(join(legDProbe, 'client.ts'), [
+    'declare const ctx: any',
+    "export const mount = () => ctx.slots.inject('conversation.session.header.leading', () => null)",
+    '',
+  ].join('\n'))
+  try {
+    execFileSync(process.execPath, [join(pkgRoot, 'skills/plugin-upgrade/scripts/scan-0.1.5.mjs'), '--repo', legDProbe, '--span', 'legD', '--quiet'], { stdio: ['ignore', 'pipe', 'pipe'], windowsHide: true })
+    failures.push('packaged skill-relative scanner exited 0 on a leg-D seam (D4)')
+  } catch (error) {
+    if (error.status !== 1) failures.push(`packaged skill-relative scanner exited ${error.status} on the leg-D probe, expected 1`)
   }
 
   if (failures.length) {

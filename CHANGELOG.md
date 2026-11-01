@@ -1,5 +1,20 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- **`legD`: the `0.1.6-alpha.2 / 0.1.7 -> 0.2.x` corridor.** A third closed corridor with its own catalog (`lib/scan-0.2.mjs`), card (`skills/plugin-upgrade/references/v0.1.6-alpha.2-to-v0.2.x.md`), fixtures (`fixtures/leg-d-*`) and card↔catalog parity gate. The catalog holds five machine-detected, evidence-bound seams: `D1` the install-time peer-band rejection (a band still ending at `<0.2.0` cannot be installed on a 0.2.x host; `packages/boot/app-boot/src/plugin-compatibility.ts`), `D2` the deleted settings `register`/`installSection`/`SettingsScope` surface, `D3` the deleted invariants package/service/subpath exports, `D4` the removed `conversation.session.header.leading` slot, and `D5` the workspace-files Remote rename (`readAll`/`readRelated` → `readBytes`, `changes()` → `changes(path)`).
+- **Advisory (not scanned) section on the `legD` card.** V4 session-log parsing, the `{kind:'plugin'}` message-source removal, deleted composition rows, `dsh.client.inject` shape, the `stats` → `activity`/`usage` split, `mode: 'both'`, and the guide's `L1`–`L19` are documented with evidence but deliberately have no detector. `CARD_ONLY = []`: every *catalog* seam is scanned; the advisory items are not catalog seams.
+- `test/scan-0.2.test.mjs`: bad/good fixtures, the structured `D1` matrix (`engines.dsh` precedence, six-clause band, `workspace:`), the `D5` mid-migration downgrade, `--seams`, CLI `--span legD`, band auto-detection (0.2 and 0.1.7 route to legD; 0.1.6 stays legC), `--json`, render and read-only checks.
+
+### Changed
+
+- **Routing:** `lib/route.mjs` gains the `legD` index row and the `0.1.7` / positive-`0.2` band heuristic. Upper bounds are stripped before the 0.2 test, so a stale `<0.2.0` band does not route to legD by itself. `CORRIDOR_CEILING` rises to `0.2.2-alpha.2`, and the "newer than every corridor" warning now reads the constant instead of a hardcoded string.
+- **Dispatch fix:** the CLI wrapper consumes `--span` before handing argv to a catalog `main()`. Previously `--span legC` reached the catalog as an unknown argument and exited `2`; the flag never actually worked end-to-end.
+- Skill frontmatter/body, `README.md` and the four translations, `AGENTS.md`, `types.d.ts`, `package.json` metadata, and the artifact/self-contained gates now describe and require all three corridors. No `legAB`/`legC` seam, card, catalog or fixture changed.
+- Evidence: `docs/EVIDENCE.md` §12 records the commands and `path:line` outputs behind every `legD` seam (harness checkout `ce7073d512` = `0.2.2-alpha.2`; guide baseline `d743267` = `dsh-v0.2.1-alpha.2`).
+
 ## [2.1.2] - 2026-10-31
 
 ### Changed

@@ -1,7 +1,7 @@
 {
   "name": "dsh-plugin-upgrade",
   "version": "2.1.2",
-  "description": "Plugin-author upgrade skill for DeepSeek Harness: one package, one corridor index - the scanner detects the caller peer band and routes to the matching closed corridor card (0.1.3-alpha.1 -> 0.1.5-rc.1 as legs A+B, and 0.1.5-rc.2 -> 0.1.6-alpha.2 as leg C), with a zero-dependency seam scanner shipped as a bundle skill and an npx CLI.",
+  "description": "Plugin-author upgrade skill for DeepSeek Harness: one package, one corridor index - the scanner detects the caller peer band and routes to the matching closed corridor card (0.1.3-alpha.1 -> 0.1.5-rc.1 as legs A+B, 0.1.5-rc.2 -> 0.1.6-alpha.2 as leg C, and 0.1.6-alpha.2/0.1.7 -> 0.2.x as leg D), with a zero-dependency seam scanner shipped as a bundle skill and an npx CLI.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/PerryLink/dsh-plugin-upgrade.git"
@@ -81,14 +81,15 @@
         "0.1.7-rc.1",
         "0.1.7-rc.2",
         "0.2.1-alpha.1",
-        "0.2.1-rc.2"
+        "0.2.1-rc.2",
+        "0.2.2-alpha.2"
       ]
     },
     "capability": {
       "id": "plugin-upgrade",
       "kind": "service",
       "invocation": "ctx.skills.get('plugin-upgrade') resolves a complete SkillDefinition",
-      "expected": "the session skill catalog lists plugin-upgrade and the loaded body carries the corridor index (lib/route.mjs) with both closed corridor cards - legAB 0.1.3-alpha.1 -> 0.1.5-rc.1 and legC 0.1.5-rc.2 -> 0.1.6-alpha.2 - over a directory resourceBase"
+      "expected": "the session skill catalog lists plugin-upgrade and the loaded body carries the corridor index (lib/route.mjs) with all three closed corridor cards - legAB 0.1.3-alpha.1 -> 0.1.5-rc.1, legC 0.1.5-rc.2 -> 0.1.6-alpha.2, and legD 0.1.6-alpha.2/0.1.7 -> 0.2.x - over a directory resourceBase"
     },
     "evidence": {
       "install": null,

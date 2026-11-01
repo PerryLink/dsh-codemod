@@ -16,7 +16,7 @@
  * Exit codes: 0 = no error-severity hit, 1 = at least one error-severity hit,
  *             2 = usage or scan failure.
  */
-import { resolveCorridor, spanFromArgv, repoFromArgv, loadCatalog } from '../lib/route.mjs'
+import { resolveCorridor, spanFromArgv, repoFromArgv, withoutSpanArgv, loadCatalog } from '../lib/route.mjs'
 
 const argv = process.argv.slice(2)
 const corridor = resolveCorridor({ repoDir: repoFromArgv(argv), span: spanFromArgv(argv) })
@@ -26,4 +26,4 @@ if (!argv.includes('--quiet')) {
   process.stderr.write(`corridor: ${corridor.id} (${corridor.span}) -> ${corridor.catalog}\n`)
 }
 
-process.exit(catalog.main(argv))
+process.exit(catalog.main(withoutSpanArgv(argv)))
