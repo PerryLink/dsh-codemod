@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.0.3] - 2026-11-03
+
+### Added
+
+- `skills/plugin-upgrade/references/v0.2.1-to-v0.2.2-advisory.md`: advisory (not scanned) for the `0.2.1-rc.5 -> 0.2.2-alpha.3` deltas — Node `>=24.9`, `ctx.menus` removal, `DSH_TOOLS_MODE` removal, Typert `create()` codecs, and the missing `dsh-client-runtime` 0.2.x release.
+
 ## [3.0.2] - 2026-11-02
 
 ### Fixed
