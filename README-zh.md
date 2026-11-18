@@ -70,7 +70,7 @@ DeepSeek Harness 插件升级技能——一个包、一份走廊索引、两条
 
 | 面 | 状态 |
 |---|---|
-| 宿主 | DeepSeek Harness `dsh-v0.2.1-alpha.1`（当前线；dev/test 钉号 `0.2.1-alpha.1`）。走廊索引与它所度量的跨度绑定：`legAB` = `0.1.3-alpha.1 → 0.1.5-rc.1`（tag `dsh-v0.1.7-alpha.2` = `183f08e9c6dd`；leg A→B 交接点 `dsh-v0.1.7-alpha.2` = `5dda764ed3aa`），`legC` = `0.1.5-rc.2 → 0.1.6-alpha.2`（tag `dsh-v0.1.6-alpha.2`），`legD` = `0.1.6-alpha.2 / 0.1.7 → 0.2.x`（`0.2.2-alpha.2` checkout）。peer 区间 `@deepseek-ai/dsh-skill >=0.1.6-0 <0.2.0 \|\| >=0.2.0-0 <0.3.0 \|\| >=0.2.1-0 <0.3.0`、`@deepseek-ai/cordis ^4.0.5-alpha.1`、`@deepseek-ai/schemastery ^3.18.5-alpha.1`。 |
+| 宿主 | DeepSeek Harness `dsh-v0.2.2-rc.4`（当前线；dev/test 钉号 `0.2.1-alpha.1`）。走廊索引与它所度量的跨度绑定：`legAB` = `0.1.3-alpha.1 → 0.1.5-rc.1`（tag `dsh-v0.1.7-alpha.2` = `183f08e9c6dd`；leg A→B 交接点 `dsh-v0.1.7-alpha.2` = `5dda764ed3aa`），`legC` = `0.1.5-rc.2 → 0.1.6-alpha.2`（tag `dsh-v0.1.6-alpha.2`），`legD` = `0.1.6-alpha.2 / 0.1.7 → 0.2.x`（`0.2.2-alpha.2` checkout）。peer 区间 `@deepseek-ai/dsh-skill >=0.1.6-0 <0.2.0 \|\| >=0.2.0-0 <0.3.0 \|\| >=0.2.1-0 <0.3.0 \|\| >=0.2.2-0 <0.3.0`、`@deepseek-ai/cordis ^4.0.5-alpha.1`、`@deepseek-ai/schemastery ^3.18.5-alpha.1`。 |
 | Node | `^22.19.0 \|\| >=24.0.0` |
 | 平台 | 有 Node 即可；扫描器只读文件系统，与平台无关 |
 | 模型 | 纯文本模型完全支持；技能就是一段 Markdown，不要求工具或视觉能力 |
@@ -85,7 +85,7 @@ DeepSeek Harness 插件升级技能——一个包、一份走廊索引、两条
 两半，每条走廊一套接缝目录：
 
 - **一个随包发布的 agent 技能（`plugin-upgrade`）** —— 合并后的走廊卡，以及「修-验」循环。正文先把调用者路由到与它 peer 区间相符的那条 leg；只有任务真正需要时模型才会加载它，本包不贡献任何系统提示词段落，也不注册工具。
-- **一个零依赖 CLI（`dsh-plugin-upgrade-scan`）** —— 解析出走廊，并按 `file:line` 报告那条走廊接缝的事实：`legAB` 的二十条（`S3`、`S8`、`S9`、`M1`、`S4`、`S5`、`S6`、`S7`、`S2`、`S1`、`S10`、`C1`、`C2`、`P1`、`C4`、`C5`、`H1`、`H2`、`H4`、`H3`）于 2026-09-09（leg A）与 2026-09-10（leg B）从 harness 的 tag 区间重新读取，、`legC` 的五条（`E1`–`E5`）在 `dsh-v0.1.6-alpha.2` 上测得（2026-09-19），或 `legD` 的五条（`D1`–`D5`）于 2026-11-01 在 `0.2.2-alpha.2` checkout（`ce7073d512`）与指南 `0.2.1-alpha.2` 基线上重新读取。命中 error 级即退出码 `1`，可直接接进 CI。
+- **一个零依赖 CLI（`dsh-plugin-upgrade-scan`）** —— 解析出走廊，并按 `file:line` 报告那条走廊接缝的事实：`legAB` 的二十条（`S3`、`S8`、`S9`、`M1`、`S4`、`S5`、`S6`、`S7`、`S2`、`S1`、`S10`、`C1`、`C2`、`P1`、`C4`、`C5`、`H1`、`H2`、`H4`、`H3`）于 2026-11-18（leg A）与 2026-11-18（leg B）从 harness 的 tag 区间重新读取，、`legC` 的五条（`E1`–`E5`）在 `dsh-v0.1.6-alpha.2` 上测得（2026-11-18），或 `legD` 的五条（`D1`–`D5`）于 2026-11-18 在 `0.2.2-alpha.2` checkout（`ce7073d512`）与指南 `0.2.1-alpha.2` 基线上重新读取。命中 error 级即退出码 `1`，可直接接进 CI。
 
 它要消灭的失效模式是：**这一跨度的破坏大多是静默的，而且两端都静默。** 类型线可能陈旧，于是仓库是对着**旧目录**编译的（接缝 `M1`）；而裸 `conversation` client slot 被删除且没有别名，`ctx.slots.inject()` 又只在 declaration 存在时才执行回调——于是仍然指向它的 client 半边停止挂载，没有报错、没有日志、构建也不会失败（接缝 `C1`）。有三类破坏能穿过 `typecheck` + `test`：
 

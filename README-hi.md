@@ -81,7 +81,7 @@ DeepSeek Harness के लिए प्लगइन अपग्रेड स�
 
 | सतह | स्थिति |
 |---|---|
-| हार्नेस | DeepSeek Harness `dsh-v0.2.1-alpha.1` (वर्तमान लाइन; dev/test पिन `0.2.1-alpha.1`)। कॉरिडोर इंडेक्स उन्हीं स्पैनों के प्रमाण से बंधा है जिन्हें उसने मापा: `legAB` = `0.1.3-alpha.1 → 0.1.5-rc.1` (tag `dsh-v0.1.7-alpha.2` = `183f08e9c6dd`; पैर A→B हैंडऑफ़ `dsh-v0.1.7-alpha.2` = `5dda764ed3aa`) `legC` = `0.1.5-rc.2 → 0.1.6-alpha.2` (tag `dsh-v0.1.6-alpha.2`), और `legD` = `0.1.6-alpha.2 / 0.1.7 → 0.2.x` (`0.2.2-alpha.2` checkout)। पीयर बैंड `@deepseek-ai/dsh-skill >=0.1.6-0 <0.2.0 \|\| >=0.2.0-0 <0.3.0 \|\| >=0.2.1-0 <0.3.0`, `@deepseek-ai/cordis ^4.0.5-alpha.1`, `@deepseek-ai/schemastery ^3.18.5-alpha.1`। |
+| हार्नेस | DeepSeek Harness `dsh-v0.2.2-rc.4` (वर्तमान लाइन; dev/test पिन `0.2.1-alpha.1`)। कॉरिडोर इंडेक्स उन्हीं स्पैनों के प्रमाण से बंधा है जिन्हें उसने मापा: `legAB` = `0.1.3-alpha.1 → 0.1.5-rc.1` (tag `dsh-v0.1.7-alpha.2` = `183f08e9c6dd`; पैर A→B हैंडऑफ़ `dsh-v0.1.7-alpha.2` = `5dda764ed3aa`) `legC` = `0.1.5-rc.2 → 0.1.6-alpha.2` (tag `dsh-v0.1.6-alpha.2`), और `legD` = `0.1.6-alpha.2 / 0.1.7 → 0.2.x` (`0.2.2-alpha.2` checkout)। पीयर बैंड `@deepseek-ai/dsh-skill >=0.1.6-0 <0.2.0 \|\| >=0.2.0-0 <0.3.0 \|\| >=0.2.1-0 <0.3.0 \|\| >=0.2.2-0 <0.3.0`, `@deepseek-ai/cordis ^4.0.5-alpha.1`, `@deepseek-ai/schemastery ^3.18.5-alpha.1`। |
 | Node | `^22.19.0 \|\| >=24.0.0` |
 | प्लेटफ़ॉर्म | जहाँ Node चले; स्कैनर केवल फ़ाइल सिस्टम पढ़ता है और प्लेटफ़ॉर्म-निरपेक्ष है |
 | मॉडल | केवल-पाठ मॉडल पूरी तरह समर्थित; स्किल एक Markdown है, किसी टूल या विज़न की आवश्यकता नहीं |
