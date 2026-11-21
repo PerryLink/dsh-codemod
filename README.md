@@ -1,5 +1,10 @@
 <div align="center">
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-codemod-hero-en-dark.png">
+  <img src="docs/assets/dsh-codemod-hero-en-dark.png" width="100%" alt="dsh-codemod: real terminal output of pnpm test — test suite green, followed by the skill's one-line description; one real capture shared by both colour schemes">
+</picture>
+
 # ⬆️ dsh-codemod
 
 > **Renamed:** previously `dsh-plugin-upgrade`; now **`dsh-codemod`**. Old repo stays as a pointer/backup. New home: https://github.com/PerryLink/dsh-codemod
@@ -64,7 +69,7 @@ Installing the bundle only registers a skill; removing the row removes the skill
 
 ## What is dsh-codemod?
 
-![dsh-codemod: real terminal run](docs/assets/dsh-plugin-upgrade-demo.gif)
+![dsh-codemod: real terminal run](docs/assets/dsh-codemod-demo.gif)
 
 *Animated replay of a real run recorded in this repository.*
 
@@ -72,7 +77,7 @@ Plugin upgrade skill for DeepSeek Harness — one package, one corridor index, t
 
 The scanner routes itself: it reads the target repository's declared dsh band (or takes `--span`), then applies that corridor's own evidence-bound catalog — `legAB`'s 20 seams (leg A `0.1.3-alpha.1` → `0.1.5-alpha.1` plus leg B `0.1.5-alpha.1` → `0.1.5-rc.1`), `legC`'s 5 (`E1`–`E5`), or `legD`'s 5 (`D1`–`D5`). One entry point, so a client half that stopped mounting silently is never mistaken for "typecheck is green".
 
-![Workflow diagram for dsh-codemod: call → plugin → result.](docs/assets/dsh-plugin-upgrade-flow.svg)
+![Workflow diagram for dsh-codemod: call → plugin → result.](docs/assets/dsh-codemod-flow.svg)
 
 *Workflow overview: call → plugin → result. The examples below use the real command surface.*
 

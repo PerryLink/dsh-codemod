@@ -1,5 +1,10 @@
 <div align="center">
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-codemod-hero-en-dark.png">
+  <img src="docs/assets/dsh-codemod-hero-en-dark.png" width="100%" alt="dsh-codemod: salida real de terminal de pnpm test — suite de pruebas en verde y la descripción de una línea de la habilidad; una sola captura real compartida por ambos esquemas de color">
+</picture>
+
 # ⬆️ dsh-codemod
 
 > **Renamed:** previously `dsh-plugin-upgrade`; now **`dsh-codemod`**. Old repo stays as a pointer/backup. New home: https://github.com/PerryLink/dsh-codemod
@@ -44,7 +49,7 @@ dsh plugin --profile <name> add dsh-codemod
 <!-- star-cta -->
 ## Instalación y desinstalación
 
-![dsh-codemod: ejecución real de terminal](docs/assets/dsh-plugin-upgrade-demo.gif)
+![dsh-codemod: ejecución real de terminal](docs/assets/dsh-codemod-demo.gif)
 
 *Repetición animada de una ejecución real registrada en este repositorio.*
 
@@ -68,7 +73,7 @@ Habilidad de actualización de plugins para DeepSeek Harness — un paquete, un 
 
 El escáner se enruta solo: lee la banda dsh declarada por el repositorio destino (o toma `--span`) y luego aplica el catálogo propio de ese corredor, vinculado a evidencia — las 20 costuras de `legAB` (tramo A `0.1.3-alpha.1` → `0.1.5-alpha.1` más tramo B `0.1.5-alpha.1` → `0.1.5-rc.1`) las 5 costuras de `legC` (`E1`–`E5`), o las 5 de `legD` (`D1`–`D5`; el resto de 0.2 es advisory y no se escanea). Un solo punto de entrada, para que una mitad de cliente que dejó de montarse en silencio nunca se confunda con «typecheck en verde».
 
-![Diagrama de flujo de dsh-plugin-upgrade: llamada → plugin → resultado.](docs/assets/dsh-plugin-upgrade-flow.svg)
+![Diagrama de flujo de dsh-plugin-upgrade: llamada → plugin → resultado.](docs/assets/dsh-codemod-flow.svg)
 
 *Resumen del flujo: llamada → plugin → resultado. Los ejemplos siguientes usan la superficie de comandos real.*
 

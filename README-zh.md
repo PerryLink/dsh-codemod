@@ -1,5 +1,10 @@
 <div align="center">
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-codemod-hero-en-dark.png">
+  <img src="docs/assets/dsh-codemod-hero-en-dark.png" width="100%" alt="dsh-codemod：pnpm test 的真实终端输出——测试套件全绿，随后是技能的一句话说明；单张真实截图，深浅两种主题共用">
+</picture>
+
 # ⬆️ dsh-codemod
 
 > **Renamed:** previously `dsh-plugin-upgrade`; now **`dsh-codemod`**. Old repo stays as a pointer/backup. New home: https://github.com/PerryLink/dsh-codemod
@@ -53,7 +58,7 @@ DeepSeek Harness 插件升级技能——一个包、一份走廊索引、两条
 
 扫描器自行路由：它读取目标仓库声明的 dsh 区间（或接受 `--span`），然后套用那条走廊自己的、证据绑定的目录——`legAB` 的 20 条接缝（leg A `0.1.3-alpha.1` → `0.1.5-alpha.1` 加 leg B `0.1.5-alpha.1` → `0.1.5-rc.1`）、`legC` 的 5 条（`E1`–`E5`）或 `legD` 的 5 条（`D1`–`D5`；其余 0.2 项为 advisory，不扫描）。只有一个入口，因此「静默停止挂载的 client 半边」永远不会被误当成「typecheck 绿了」。
 
-![dsh-plugin-upgrade 工作流图：调用 → 插件 → 结果。](docs/assets/dsh-plugin-upgrade-flow.svg)
+![dsh-plugin-upgrade 工作流图：调用 → 插件 → 结果。](docs/assets/dsh-codemod-flow.svg)
 
 *工作流概览：调用 → 插件 → 结果。下面的示例使用实际命令面。*
 
@@ -97,7 +102,7 @@ DeepSeek Harness 插件升级技能——一个包、一份走廊索引、两条
 
 ## 快速开始
 
-![dsh-codemod 真实终端运行](docs/assets/dsh-plugin-upgrade-demo.gif)
+![dsh-codemod 真实终端运行](docs/assets/dsh-codemod-demo.gif)
 
 *本仓库一次真实运行的动图回放。*
 
