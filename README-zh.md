@@ -97,6 +97,10 @@ DeepSeek Harness 插件升级技能——一个包、一份走廊索引、两条
 
 ## 快速开始
 
+![dsh-codemod 真实终端运行](docs/assets/dsh-plugin-upgrade-demo.gif)
+
+*本仓库一次真实运行的动图回放。*
+
 ```sh
 dsh plugin --profile web add github:PerryLink/dsh-plugin-upgrade
 ```

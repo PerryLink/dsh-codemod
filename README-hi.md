@@ -44,6 +44,10 @@ dsh plugin --profile <name> add dsh-codemod
 <!-- star-cta -->
 ## इंस्टॉल और अनइंस्टॉल
 
+![dsh-codemod का असली टर्मिनल रन](docs/assets/dsh-plugin-upgrade-demo.gif)
+
+*इस रिपॉज़िटरी में दर्ज असली रन का एनिमेटेड रीप्ले।*
+
 ```sh
 dsh plugin --profile web add dsh-codemod            # npm से
 dsh plugin --profile web add github:PerryLink/dsh-plugin-upgrade   # स्रोत से

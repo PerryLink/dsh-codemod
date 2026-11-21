@@ -44,6 +44,10 @@ dsh plugin --profile <name> add dsh-codemod
 <!-- star-cta -->
 ## Instalación y desinstalación
 
+![dsh-codemod: ejecución real de terminal](docs/assets/dsh-plugin-upgrade-demo.gif)
+
+*Repetición animada de una ejecución real registrada en este repositorio.*
+
 ```sh
 dsh plugin --profile web add dsh-codemod            # desde npm
 dsh plugin --profile web add github:PerryLink/dsh-plugin-upgrade   # desde el código

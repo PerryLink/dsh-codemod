@@ -64,6 +64,10 @@ Installing the bundle only registers a skill; removing the row removes the skill
 
 ## What is dsh-codemod?
 
+![dsh-codemod: real terminal run](docs/assets/dsh-plugin-upgrade-demo.gif)
+
+*Animated replay of a real run recorded in this repository.*
+
 Plugin upgrade skill for DeepSeek Harness — one package, one corridor index, three closed corridors: `0.1.3-alpha.1` → `0.1.5-rc.1` (`legAB`), `0.1.5-rc.2` → `0.1.6-alpha.2` (`legC`), and `0.1.6-alpha.2` / `0.1.7` → `0.2.x` (`legD`).
 
 The scanner routes itself: it reads the target repository's declared dsh band (or takes `--span`), then applies that corridor's own evidence-bound catalog — `legAB`'s 20 seams (leg A `0.1.3-alpha.1` → `0.1.5-alpha.1` plus leg B `0.1.5-alpha.1` → `0.1.5-rc.1`), `legC`'s 5 (`E1`–`E5`), or `legD`'s 5 (`D1`–`D5`). One entry point, so a client half that stopped mounting silently is never mistaken for "typecheck is green".
