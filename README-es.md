@@ -9,10 +9,11 @@
 
 > **Renamed:** previously `dsh-plugin-upgrade`; now **`dsh-codemod`**. Old repo stays as a pointer/backup. New home: https://github.com/PerryLink/dsh-codemod
 
-
 > **Alcance: tres corredores cerrados, hasta `0.2.x`.** `legAB` = `0.1.3-alpha.1` → `0.1.5-rc.1`, `legC` = `0.1.5-rc.2` → `0.1.6-alpha.2`, `legD` = `0.1.6-alpha.2 / 0.1.7` → `0.2.x` (medido contra el checkout `0.2.2-alpha.2` y la base `0.2.1-alpha.2` de la guía). `legD` escanea cinco costuras (`D1`–`D5`); el resto de los cambios 0.2 está en **advisory (not scanned)** — un escaneo limpio no certifica compatibilidad con 0.2. Para actualizaciones rutinarias del bundle, use el `updateBundle()` nativo del gestor de plugins del host.
 
 - **Canal de la tienda 1024**: ejecuta `npm i -g dsh1024` una vez y luego `dsh1024 plugin --profile web add dsh-codemod` (cuenta para el ranking de instalaciones de [deepseek1024.com](https://deepseek1024.com)).
+Última verificación: DeepSeek Harness `dsh-v0.2.3-alpha.1` (2026-11-22).
+
 [![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/dsh-codemod)
 [![dshfind](https://dshfind.com/api/badge/PerryLink/dsh-codemod?metric=downloads&lang=es)](https://dshfind.com/es/plugins/PerryLink/dsh-plugin-upgrade?ref=badge)
 
@@ -38,11 +39,9 @@
 dsh plugin --profile <name> add dsh-codemod
 ```
 
-
 </div>
 
 ---
-
 
 **📖 Base de conocimiento del ecosistema** — datos medidos, no marketing: [guía de desarrollo · datos de selección · criterios de mantenimiento](https://perrylink.github.io/dsh-plugin-guide/).
 
@@ -76,7 +75,6 @@ El escáner se enruta solo: lee la banda dsh declarada por el repositorio destin
 ![Diagrama de flujo de dsh-plugin-upgrade: llamada → plugin → resultado.](docs/assets/dsh-codemod-flow.svg)
 
 *Resumen del flujo: llamada → plugin → resultado. Los ejemplos siguientes usan la superficie de comandos real.*
-
 
 *La misma ejecución, animada.*
 
@@ -302,7 +300,6 @@ El escáner tiene un par de fixtures sintéticos **por tramo de `legAB`**: `fixt
 ## Licencia
 
 Apache-2.0 — consulta [LICENSE](LICENSE). Las dependencias de instalación y sus licencias están en [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md); no se incluye nada empaquetado.
-
 
 ## PerryLink DSH Plugin Family
 

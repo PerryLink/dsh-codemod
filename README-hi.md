@@ -9,10 +9,11 @@
 
 > **Renamed:** previously `dsh-plugin-upgrade`; now **`dsh-codemod`**. Old repo stays as a pointer/backup. New home: https://github.com/PerryLink/dsh-codemod
 
-
 > **दायरा: तीन बंद कॉरिडोर, `0.2.x` तक।** `legAB` = `0.1.3-alpha.1` → `0.1.5-rc.1`, `legC` = `0.1.5-rc.2` → `0.1.6-alpha.2`, `legD` = `0.1.6-alpha.2 / 0.1.7` → `0.2.x` (`0.2.2-alpha.2` checkout और गाइड के `0.2.1-alpha.2` बेसलाइन पर मापा गया)। `legD` केवल पाँच सीमें (`D1`–`D5`) स्कैन करता है; बाकी 0.2 बदलाव **advisory (not scanned)** में हैं — साफ़ स्कैन 0.2 अनुरूपता का प्रमाण नहीं है। सामान्य bundle अपडेट के लिए host plugin manager का native `updateBundle()` उपयोग करें।
 
 - **1024 स्टोर चैनल**: एक बार `npm i -g dsh1024` चलाएँ, फिर `dsh1024 plugin --profile web add dsh-codemod` (यह [deepseek1024.com](https://deepseek1024.com) की इंस्टॉल रैंकिंग में गिना जाता है)।
+अंतिम सत्यापन: DeepSeek Harness `dsh-v0.2.3-alpha.1` (2026-11-22).
+
 [![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/dsh-codemod)
 [![dshfind](https://dshfind.com/api/badge/PerryLink/dsh-codemod?metric=downloads&lang=hi)](https://dshfind.com/hi/plugins/PerryLink/dsh-codemod?ref=badge)
 
@@ -38,11 +39,9 @@
 dsh plugin --profile <name> add dsh-codemod
 ```
 
-
 </div>
 
 ---
-
 
 **📖 इकोसिस्टम नॉलेज बेस** — मापे गए आँकड़े, मार्केटिंग नहीं: [डेवलपमेंट गाइड · चयन डेटा · रखरखाव मानदंड](https://perrylink.github.io/dsh-plugin-guide/)।
 
@@ -76,7 +75,6 @@ DeepSeek Harness के लिए प्लगइन अपग्रेड स�
 ![dsh-plugin-upgrade कार्यप्रवाह आरेख: कॉल → प्लगइन → परिणाम।](docs/assets/dsh-codemod-flow.svg)
 
 *कार्यप्रवाह: कॉल → प्लगइन → परिणाम। नीचे के उदाहरण वास्तविक कमांड सतह का उपयोग करते हैं।*
-
 
 *वही रन, एनिमेटेड।*
 

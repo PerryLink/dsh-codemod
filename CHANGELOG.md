@@ -41,6 +41,10 @@
 
 ## [Unreleased]
 
+## [3.0.4] - 2026-11-22
+
+- Compatibility: declare DeepSeek Harness 0.2.3-alpha.1 support (>=0.2.3-0 <0.3.0-0 in engines.dsh and every @deepseek-ai/dsh-* peer range) and refresh README verification stamps.
+
 ### Added
 
 - **`legD`: the `0.1.6-alpha.2 / 0.1.7 -> 0.2.x` corridor.** A third closed corridor with its own catalog (`lib/scan-0.2.mjs`), card (`skills/plugin-upgrade/references/v0.1.6-alpha.2-to-v0.2.x.md`), fixtures (`fixtures/leg-d-*`) and card↔catalog parity gate. The catalog holds five machine-detected, evidence-bound seams: `D1` the install-time peer-band rejection (a band still ending at `<0.2.0` cannot be installed on a 0.2.x host; `packages/boot/app-boot/src/plugin-compatibility.ts`), `D2` the deleted settings `register`/`installSection`/`SettingsScope` surface, `D3` the deleted invariants package/service/subpath exports, `D4` the removed `conversation.session.header.leading` slot, and `D5` the workspace-files Remote rename (`readAll`/`readRelated` → `readBytes`, `changes()` → `changes(path)`).

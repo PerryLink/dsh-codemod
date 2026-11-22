@@ -9,10 +9,11 @@
 
 > **Renamed:** previously `dsh-plugin-upgrade`; now **`dsh-codemod`**. Old repo stays as a pointer/backup. New home: https://github.com/PerryLink/dsh-codemod
 
-
 > **Escopo: três corredores fechados, até `0.2.x`.** `legAB` = `0.1.3-alpha.1` → `0.1.5-rc.1`, `legC` = `0.1.5-rc.2` → `0.1.6-alpha.2`, `legD` = `0.1.6-alpha.2 / 0.1.7` → `0.2.x` (medido no checkout `0.2.2-alpha.2` e na base `0.2.1-alpha.2` do guia). `legD` escaneia cinco costuras (`D1`–`D5`); o restante das mudanças 0.2 está em **advisory (not scanned)** — um scan limpo não certifica compatibilidade com 0.2. Para atualizações rotineiras do bundle, use o `updateBundle()` nativo do gerenciador de plugins do host.
 
 - **Canal da loja 1024**: rode `npm i -g dsh1024` uma vez e depois `dsh1024 plugin --profile web add dsh-codemod` (conta para o ranking de instalações do [deepseek1024.com](https://deepseek1024.com)).
+Última verificação: DeepSeek Harness `dsh-v0.2.3-alpha.1` (2026-11-22).
+
 [![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/dsh-codemod)
 [![dshfind](https://dshfind.com/api/badge/PerryLink/dsh-codemod?metric=downloads&lang=pt)](https://dshfind.com/pt/plugins/PerryLink/dsh-plugin-upgrade?ref=badge)
 
@@ -38,11 +39,9 @@
 dsh plugin --profile <name> add dsh-codemod
 ```
 
-
 </div>
 
 ---
-
 
 **📖 Base de conhecimento do ecossistema** — dados medidos, não marketing: [guia de desenvolvimento · dados de seleção · critérios de manutenção](https://perrylink.github.io/dsh-plugin-guide/).
 
@@ -76,7 +75,6 @@ O scanner se encaminha sozinho: lê a faixa dsh declarada pelo repositório alvo
 ![Diagrama de fluxo de dsh-plugin-upgrade: chamada → plugin → resultado.](docs/assets/dsh-codemod-flow.svg)
 
 *Visão geral do fluxo: chamada → plugin → resultado. Os exemplos abaixo usam a superfície real de comandos.*
-
 
 *A mesma execução, animada.*
 
@@ -302,7 +300,6 @@ O scanner tem um par de fixtures sintéticas **por perna do `legAB`**: `fixtures
 ## Licença
 
 Apache-2.0 — veja [LICENSE](LICENSE). As dependências de instalação e suas licenças estão em [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md); nada é empacotado.
-
 
 ## PerryLink DSH Plugin Family
 

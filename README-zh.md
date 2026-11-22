@@ -9,7 +9,6 @@
 
 > **Renamed:** previously `dsh-plugin-upgrade`; now **`dsh-codemod`**. Old repo stays as a pointer/backup. New home: https://github.com/PerryLink/dsh-codemod
 
-
 > **范围：三条闭合走廊，终点到 `0.2.x`。** `legAB` = `0.1.3-alpha.1` → `0.1.5-rc.1`，`legC` = `0.1.5-rc.2` → `0.1.6-alpha.2`，`legD` = `0.1.6-alpha.2 / 0.1.7` → `0.2.x`（度量基线：`0.2.2-alpha.2` checkout 与指南的 `0.2.1-alpha.2`）。`legD` 只扫描五条（`D1`–`D5`），其余 0.2 破坏项列在**advisory (not scanned)**；干净扫描不是 0.2 兼容证书。日常 bundle 更新请用宿主插件管理器的原生 `updateBundle()`。
 - **1024 商店通道**：先 `npm i -g dsh1024`，再执行 `dsh1024 plugin --profile web add dsh-codemod`（计入 [deepseek1024.com](https://deepseek1024.com) 安装排行）。
 [![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/dsh-codemod)
@@ -37,11 +36,9 @@
 dsh plugin --profile <name> add dsh-codemod
 ```
 
-
 </div>
 
 ---
-
 
 **📖 生态实测知识库**（实测数据，不是营销）：[插件开发指南 · 选型实测数据 · 维护取舍判据](https://perrylink.github.io/dsh-plugin-guide/)。
 
@@ -62,7 +59,6 @@ DeepSeek Harness 插件升级技能——一个包、一份走廊索引、两条
 
 *工作流概览：调用 → 插件 → 结果。下面的示例使用实际命令面。*
 
-
 *同一次运行，动图版。*
 
 ## Comparison
@@ -75,7 +71,7 @@ DeepSeek Harness 插件升级技能——一个包、一份走廊索引、两条
 
 | 面 | 状态 |
 |---|---|
-| 宿主 | DeepSeek Harness `dsh-v0.2.2-rc.4`（当前线；dev/test 钉号 `0.2.1-alpha.1`）。走廊索引与它所度量的跨度绑定：`legAB` = `0.1.3-alpha.1 → 0.1.5-rc.1`（tag `dsh-v0.1.7-alpha.2` = `183f08e9c6dd`；leg A→B 交接点 `dsh-v0.1.7-alpha.2` = `5dda764ed3aa`），`legC` = `0.1.5-rc.2 → 0.1.6-alpha.2`（tag `dsh-v0.1.6-alpha.2`），`legD` = `0.1.6-alpha.2 / 0.1.7 → 0.2.x`（`0.2.2-alpha.2` checkout）。peer 区间 `@deepseek-ai/dsh-skill >=0.1.6-0 <0.2.0 \|\| >=0.2.0-0 <0.3.0 \|\| >=0.2.1-0 <0.3.0 \|\| >=0.2.2-0 <0.3.0`、`@deepseek-ai/cordis ^4.0.5-alpha.1`、`@deepseek-ai/schemastery ^3.18.5-alpha.1`。 |
+| 宿主 | DeepSeek Harness `dsh-v0.2.3-alpha.1`（当前线；dev/test 钉号 `0.2.1-alpha.1`）。走廊索引与它所度量的跨度绑定：`legAB` = `0.1.3-alpha.1 → 0.1.5-rc.1`（tag `dsh-v0.2.3-alpha.1` = `183f08e9c6dd`；leg A→B 交接点 `dsh-v0.2.3-alpha.1` = `5dda764ed3aa`），`legC` = `0.1.5-rc.2 → 0.1.6-alpha.2`（tag `dsh-v0.2.3-alpha.1`），`legD` = `0.1.6-alpha.2 / 0.1.7 → 0.2.x`（`0.2.2-alpha.2` checkout）。peer 区间 `@deepseek-ai/dsh-skill >=0.1.6-0 <0.2.0 \|\| >=0.2.0-0 <0.3.0 \|\| >=0.2.1-0 <0.3.0 \|\| >=0.2.2-0 <0.3.0`、`@deepseek-ai/cordis ^4.0.5-alpha.1`、`@deepseek-ai/schemastery ^3.18.5-alpha.1`。 |
 | Node | `^22.19.0 \|\| >=24.0.0` |
 | 平台 | 有 Node 即可；扫描器只读文件系统，与平台无关 |
 | 模型 | 纯文本模型完全支持；技能就是一段 Markdown，不要求工具或视觉能力 |

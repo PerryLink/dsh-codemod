@@ -9,13 +9,13 @@
 
 > **Renamed:** previously `dsh-plugin-upgrade`; now **`dsh-codemod`**. Old repo stays as a pointer/backup. New home: https://github.com/PerryLink/dsh-codemod
 
-
 > **Non-official companion tool.** Part of the DSH standards family; not a certification, accreditation, security audit, or official endorsement. Standard: https://github.com/PerryLink/dsh-standards. The `dsh.standards` block is a `not-run` placeholder, not a pass.
-
 
 > **Scope: three closed corridors, ending at `0.2.x`.** `legAB` = `0.1.3-alpha.1` → `0.1.5-rc.1`, `legC` = `0.1.5-rc.2` → `0.1.6-alpha.2`, `legD` = `0.1.6-alpha.2 / 0.1.7` → `0.2.x` (measured against the `0.2.2-alpha.2` checkout and the guide's `0.2.1-alpha.2` baseline). The corridor cards stop at their measured seams: `legD` scans five (`D1`–`D5`) and lists the rest of the 0.2 breakage as **advisory (not scanned)** — a clean scan is not a 0.2 compatibility certificate. For routine bundle updates, use the host plugin manager's native `updateBundle()`.
 
 - **1024 store channel**: `npm i -g dsh1024` once, then `dsh1024 plugin --profile web add dsh-codemod` (counts toward the [deepseek1024.com](https://deepseek1024.com) install ranking).
+Last verified on DeepSeek Harness `dsh-v0.2.3-alpha.1` (2026-11-22).
+
 [![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/dsh-codemod)
 [![dshfind](https://dshfind.com/api/badge/PerryLink/dsh-codemod?metric=downloads)](https://dshfind.com/plugins/PerryLink/dsh-codemod?ref=badge)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/PerryLink/dsh-codemod/badge)](https://api.securityscorecards.dev/projects/github.com/PerryLink/dsh-codemod)
@@ -42,7 +42,6 @@
 dsh plugin --profile <name> add dsh-codemod
 ```
 
-
 </div>
 
 ---
@@ -66,7 +65,6 @@ Installing the bundle only registers a skill; removing the row removes the skill
 
 *English:* part of a 99 plugin family for DeepSeek Harness. If it is useful, **a star helps the next person find it** — nothing is gated behind it.
 
-
 ## What is dsh-codemod?
 
 ![dsh-codemod: real terminal run](docs/assets/dsh-codemod-demo.gif)
@@ -80,8 +78,6 @@ The scanner routes itself: it reads the target repository's declared dsh band (o
 ![Workflow diagram for dsh-codemod: call → plugin → result.](docs/assets/dsh-codemod-flow.svg)
 
 *Workflow overview: call → plugin → result. The examples below use the real command surface.*
-
-
 
 ## Comparison
 
